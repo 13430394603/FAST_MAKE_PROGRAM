@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: jre/lib/utilV2.jar
+Main-Class: com.ScientificCal.main.Main

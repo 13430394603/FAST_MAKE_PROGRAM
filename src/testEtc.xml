@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program name="mainFrame"
+	 type="definedwin" 
+	 width="480" 
+	 height="385" 
+	 title="cutJar" 
+	 padding_left="10" 
+	 padding_top="20">
+	<container padding_left="74" 
+			padding_top="4" 
+			type="normal" 
+			width="400" 
+			height="50">
+		<text name="jrePathText" type="transparent" width="240" height="20"></text>
+		<button click="selectJrePath" type="transparent" margin_left="250" width="22" height="20"></button>
+		
+		<text name="jarName" type="transparent" margin_top="24" width="240" height="20"></text>
+		<button click="selectJarPath" type="transparent" margin_top="24" margin_left="250" width="22" height="20"></button>
+	</container>
+	
+	<container width="400" 
+			height="50"
+			margin_top="65"
+			padding_left="10">
+		<radio width="20" height="20" margin_left="30" click="selectRadio"></radio>
+		<text name="cutNameText" type="transparent" 
+			width="205" 
+			height="20"
+			margin_left="94"
+			margin_top="19"></text>
+	</container>
+	<container width="450" 
+			height="135"
+			margin_top="120"
+			padding_top="25"
+			padding_left="15">
+		<textarea name="showInfo" width="425" height="102" value="选择默认将会对rt和charsets进行剪切..." editable="false"></textarea>
+	</container>
+	
+	<container name="progressbar" width="430" 
+			height="20"
+			margin_top="260">
+		<!-- <button type="transparent" 
+			width="20" 
+			height="10"></button> -->
+	</container>
+	
+	<container width="460" 
+			height="20"
+			margin_top="298"
+			padding_left="334">
+		<button click="reset" type="transparent" 
+			width="60" 
+			height="20"></button>
+		<button click="doStart" type="transparent" 
+			width="60" 
+			height="20"
+			margin_left="58"></button>
+	</container>
+	
+</program>
