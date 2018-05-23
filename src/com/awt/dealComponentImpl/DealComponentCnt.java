@@ -3,13 +3,7 @@ package com.awt.dealComponentImpl;
 import java.util.List;
 
 import com.awt.domain.BasiDoMain;
-import com.awt.domain.ButtonDoMain;
-import com.awt.domain.ContainerDoMain;
 import com.awt.domain.DoMain;
-import com.awt.domain.LabelDoMain;
-import com.awt.domain.RadioDoMain;
-import com.awt.domain.TextAreaDoMain;
-import com.awt.domain.TextDoMain;
 import com.gui.DComp.DComp;
 import com.gui.DComp.DCompContainer;
 /**
@@ -23,9 +17,8 @@ import com.gui.DComp.DCompContainer;
  * @since 1.0
  */
 public abstract class DealComponentCnt extends AbstractDealComponentCnt {
-	@Override
-	public <T> void dealComponent(DComp nowObj, List<T> containers, ReFun reFun){
-		for(T ctn : containers)
-			((DCompContainer) nowObj).add(((BasiDoMain) ctn).getName(), reFun.reDo((DoMain) ctn));
+	protected void dealComponent1(DComp nowObj, List<DoMain> containers, ReFun reFun){ 
+		for(DoMain ctn : containers)
+			((DCompContainer) nowObj).add(((BasiDoMain) ctn).getName(), reFun.reDo(ctn));
 	}
 }

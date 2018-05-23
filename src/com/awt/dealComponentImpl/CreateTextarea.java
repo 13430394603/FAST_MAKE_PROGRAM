@@ -1,23 +1,40 @@
 package com.awt.dealComponentImpl;
 
-import com.awt.control.AbstractControl_Basi;
-import com.awt.domain.BasiDoMain;
+import java.awt.event.MouseEvent;
+import java.lang.reflect.Method;
+import java.util.Map;
+
 import com.awt.domain.DoMain;
+import com.awt.enuma.EventType;
 import com.awt.enuma.TagType;
-import com.awt.util.Print;
-import com.gui.DComp.DComp;
+import com.awt.service.Service;
+import com.bean.support.ReSetterGetter;
 
 public class CreateTextarea extends DealComponent {
-	@Override
-	public DComp getComponent(DoMain domain, AbstractControl_Basi control){
-		TagType.TextAreaType[] types = TagType.TextAreaType.values();
-		for(TagType.TextAreaType type : types){
-			if(type.toString().equals(((BasiDoMain) domain).getType())){
-				return control.createClickService(domain, 
-						type.getComponent(domain));
-			}
+	@SuppressWarnings("unchecked")
+	protected <T> T[] enumType(){
+		return (T[]) TagType.TextAreaType.values();
+	}
+	
+	protected Service service(){
+		try {
+			return (Service) getBean("textService");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		Print.erro(this, "CreateTextarea", "创建Textarea标签异常");
 		return null;
+	}
+	
+	protected <T> void serviceEventMap(ReSetterGetter reSetterGetter, 
+			Map<String, Method> eventMap){
+		putEventMap(reSetterGetter, 
+				eventMap, 
+				EventType.ClickType.values(), 
+				MouseEvent.class);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T parseComp(DoMain domain, T item) {
+		return (T) ((TagType.TextAreaType) item).getComponent(domain);
 	}
 }

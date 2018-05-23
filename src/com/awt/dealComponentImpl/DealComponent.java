@@ -2,8 +2,7 @@ package com.awt.dealComponentImpl;
 
 import java.util.List;
 
-import com.awt.domain.ServiceDoMain;
-import com.awt.service.Service;
+import com.awt.domain.DoMain;
 import com.gui.DComp.DComp;
 
 /**
@@ -17,14 +16,11 @@ import com.gui.DComp.DComp;
  * @since 1.0
  */
 public abstract class DealComponent extends AbstractDealComponent {
-	
-	protected <T> void dealComponent(DComp nowObj, List<T> containers, ReFun retest){}
-	public void dealContainer(DComp nowObj, Object containers, ReFun reFun){}
-	public void dealButton(DComp nowObj, Object containers, ReFun reFun){}
-	public void dealLabel(DComp nowObj, Object containers, ReFun reFun){}
-	public void dealText(DComp nowObj, Object containers, ReFun reFun){}
-	public void dealTextarea(DComp nowObj, Object containers, ReFun reFun){}
-	public void dealRadio(DComp nowObj, Object containers, ReFun reFun){}
+	@Override
+	protected void dealComponent1(DComp nowObj, List<DoMain> containers, ReFun retest) {}
+
+	@Override
+	public void dealComponent(DComp nowObj, Object containers, ReFun reFun) {}
 }
 
 

@@ -2,12 +2,7 @@ package com.awt.dealComponentImpl;
 
 import java.util.List;
 
-import com.awt.domain.ButtonDoMain;
-import com.awt.domain.ContainerDoMain;
-import com.awt.domain.LabelDoMain;
-import com.awt.domain.RadioDoMain;
-import com.awt.domain.TextAreaDoMain;
-import com.awt.domain.TextDoMain;
+import com.awt.domain.DoMain;
 import com.gui.DComp.DComp;
 /**
  * <b>一句话描述该类</b>
@@ -20,28 +15,23 @@ import com.gui.DComp.DComp;
  * @since 1.0
  */
 public abstract class AbstractDealComponentCnt extends AbstractDealComponent {
-	protected <T> void dealComponent(DComp nowObj, List<T> containers, ReFun retest){ }
-	@SuppressWarnings("unchecked")
-	public void dealContainer(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<ContainerDoMain>) containers, reFun);
+	@Override
+	public void dealComponent(DComp nowObj, Object containers, ReFun reFun){
+		dealComponent1(nowObj, parseListType(containers), reFun);
 	}
+	@Override
+	protected void dealComponent1(DComp nowObj, List<DoMain> containers, ReFun retest){ }
+	/**
+	 * 转换成List<DoMain>对象
+	 * <p>	 
+	 * @param object
+	 * @return
+	 * List<DoMain>
+	 * @see
+	 * @since 1.0
+	 */
 	@SuppressWarnings("unchecked")
-	public void dealButton(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<ButtonDoMain>) containers, reFun);
-	}@SuppressWarnings("unchecked")
-	public void dealLabel(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<LabelDoMain>) containers, reFun);
-	}
-	@SuppressWarnings("unchecked")
-	public void dealText(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<TextDoMain>) containers, reFun);
-	}
-	@SuppressWarnings("unchecked")
-	public void dealTextarea(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<TextAreaDoMain>) containers, reFun);
-	}
-	@SuppressWarnings("unchecked")
-	public void dealRadio(DComp nowObj, Object containers, ReFun reFun){
-		dealComponent(nowObj, (List<RadioDoMain>) containers, reFun);
+	protected List<DoMain> parseListType(Object object){
+		return (List<DoMain>) object;
 	}
 }

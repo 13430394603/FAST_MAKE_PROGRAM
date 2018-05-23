@@ -1,22 +1,43 @@
 package com.awt.dealComponentImpl;
 
-import com.awt.control.AbstractControl_Basi;
-import com.awt.domain.BasiDoMain;
+import java.awt.event.MouseEvent;
+import java.lang.reflect.Method;
+import java.util.Map;
+
 import com.awt.domain.DoMain;
+import com.awt.enuma.EventType;
 import com.awt.enuma.TagType;
-import com.awt.util.Print;
-import com.gui.DComp.DComp;
+import com.awt.service.Service;
+import com.bean.support.ReSetterGetter;
 
 public class CreateRadio extends DealComponent {
+	@SuppressWarnings("unchecked")
 	@Override
-	public DComp getComponent(DoMain domain, AbstractControl_Basi control){
-		TagType.RadioType[] lists = TagType.RadioType.values();
-		for(TagType.RadioType item : lists){
-			if(item.toString().equals(((BasiDoMain) domain).getType()))
-				return control.createClickService(domain, 
-						item.getComponent(domain));
+	protected <T> T[] enumType() {
+		return (T[]) TagType.RadioType.values();
+	}
+
+	@Override
+	protected Service service() {
+		try {
+			return (Service) getBean("clickService");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		Print.erro(this, "createLabel", "createLabel标签异常");
 		return null;
+	}
+
+	@Override
+	protected <T> void serviceEventMap(ReSetterGetter reSetterGetter, Map<String, Method> eventMap) {
+		putEventMap(reSetterGetter, 
+				eventMap, 
+				EventType.ClickType.values(), 
+				MouseEvent.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	protected <T> T parseComp(DoMain domain, T item) {
+		return (T) ((TagType.RadioType) item).getComponent(domain);
 	}
 }

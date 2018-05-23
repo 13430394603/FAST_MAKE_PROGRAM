@@ -1,22 +1,50 @@
 package com.awt.dealComponentImpl;
 
-import com.awt.control.AbstractControl_Basi;
-import com.awt.domain.BasiDoMain;
-import com.awt.domain.DoMain;
-import com.awt.enuma.TagType;
-import com.awt.util.Print;
-import com.gui.DComp.DComp;
+import java.awt.event.MouseEvent;
+import java.lang.reflect.Method;
+import java.util.Map;
 
+import com.awt.domain.DoMain;
+import com.awt.enuma.EventType;
+import com.awt.enuma.TagType;
+import com.awt.service.Service;
+import com.bean.support.ReSetterGetter;
+/**
+ * <b>创建button组件</b>
+ * <p>
+ * 描述:<br>
+ * 
+ * @author 威 
+ * <br>2018年5月23日 下午8:54:36 
+ * @see
+ * @since 1.0
+ */
 public class CreateButton extends DealComponent {
-	@Override
-	public DComp getComponent(DoMain domain, AbstractControl_Basi control) {
-		TagType.ButtonType[] lists = TagType.ButtonType.values();
-		for(TagType.ButtonType item : lists){
-			if(item.toString().equals(((BasiDoMain) domain).getType()))
-				return control.createClickService(domain, 
-						item.getComponent(domain));
+
+	@SuppressWarnings("unchecked")
+	protected <T> T[] enumType(){
+		return (T[]) TagType.ButtonType.values();
+	}
+	
+	protected Service service(){
+		try {
+			return (Service) getBean("clickService");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		Print.erro(this, "createButton", "createButton标签异常");
 		return null;
+	}
+	
+	protected <T> void serviceEventMap(ReSetterGetter reSetterGetter, 
+			Map<String, Method> eventMap){
+		putEventMap(reSetterGetter, 
+				eventMap, 
+				EventType.ClickType.values(), 
+				MouseEvent.class);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T parseComp(DoMain domain, T item) {
+		return (T) ((TagType.ButtonType) item).getComponent(domain);
 	}
 }

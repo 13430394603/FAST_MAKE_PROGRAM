@@ -1,7 +1,5 @@
 package com.awt.control;
 
-import java.awt.Component;
-import java.awt.PopupMenu;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.Method;
@@ -9,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.event.ChangeEvent;
 
 import com.awt.context.ProgramContext;
 import com.awt.domain.BasiDoMain;
@@ -16,9 +15,7 @@ import com.awt.domain.DoMain;
 import com.awt.domain.TextDoMain;
 import com.awt.domain.WinEventDoMain;
 import com.awt.enuma.EventType;
-import com.awt.service.ClickService;
-import com.awt.service.ProgramService;
-import com.awt.service.TextService;
+import com.awt.service.Service;
 import com.awt.util.Print;
 import com.awt.util.UtilBeanContext;
 import com.bean.exception.BeanSupportException;
@@ -49,7 +46,7 @@ public abstract class AbstractControl_Basi{
 	 * @param domain
 	 * @param component
 	 * void
-	 * @see #putEventMap(Map, String, ReSetterGetter, Class)
+	 * @see #putFieldEventMap(Map, String, ReSetterGetter, Class)
 	 * @see #createSetterGetter(BasiDoMain)
 	 * @since 1.0
 	 */
@@ -59,20 +56,37 @@ public abstract class AbstractControl_Basi{
 		ReSetterGetter obj = createSetterGetter(program);
 		
 		Map<String, Method> eventMap = new HashMap<String, Method>();
-		for(EventType.WindowType type : EventType.WindowType.values()){
-			putEventMap(eventMap, type.toString(), obj, WindowEvent.class);
-		}
+		putEventMap(obj, 
+				eventMap, 
+				EventType.WindowType.values(), 
+				WindowEvent.class);
 		if(eventMap.size() > 0){
 			try{
-				ProgramService service = (ProgramService) getBean("programService");
-				service.setComponent(component);
-				service.setControl((AbstractControl) this);
-				service.setEventMap(eventMap);
+				putService("programService", component, eventMap);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 		return component;
+	}
+
+	/**
+	 * 给组件put一个service服务对象
+	 * <p>	 
+	 * @param beanId		bean对象管理id
+	 * @param component		组件
+	 * @param eventMap		事件集
+	 * @throws Exception
+	 * void
+	 * @see
+	 * @since 1.0
+	 */
+	protected void putService(String beanId, DComp component, 
+			Map<String, Method> eventMap) throws Exception {
+		Service service = (Service) getBean(beanId);
+		service.setComponent(component);
+		service.setControl(this);
+		service.setEventMap(eventMap);
 	}
 	
 	/**
@@ -87,16 +101,16 @@ public abstract class AbstractControl_Basi{
 	public DComp createClickService(DoMain domain, DComp component){
 		BasiDoMain domain_ = (BasiDoMain) domain;
 		
-		ReSetterGetter obj = createSetterGetter(domain_);
+		ReSetterGetter reSetterGetter = createSetterGetter(domain_);
 		
 		Map<String, Method> eventMap = new HashMap<String, Method>();
-		putClickEventMap(obj, eventMap);
+		putEventMap(reSetterGetter, 
+				eventMap, 
+				EventType.ClickType.values(), 
+				MouseEvent.class);
 		if(eventMap.size() > 0){
 			try{
-				ClickService service = (ClickService) getBean("clickService");
-				service.setComponent(component);
-				service.setControl(this);
-				service.setEventMap(eventMap);
+				putService("clickService", component, eventMap);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -111,7 +125,7 @@ public abstract class AbstractControl_Basi{
 	 * @param domain
 	 * @param component
 	 * void
-	 * @see #putEventMap(Map, String, ReSetterGetter, Class)
+	 * @see #putFieldEventMap(Map, String, ReSetterGetter, Class)
 	 * @see #putClickEventMap(BasiDoMain, Map)
 	 * @since 1.0
 	 */
@@ -121,14 +135,17 @@ public abstract class AbstractControl_Basi{
 		ReSetterGetter obj = createSetterGetter(domain_);
 		
 		Map<String, Method> eventMap = new HashMap<String, Method>();
-		putEventMap(eventMap, EventType.TextType.CHANGE.toString(), obj, javax.swing.event.ChangeEvent.class);
-		putClickEventMap(obj, eventMap);
+		putEventMap(obj, 
+				eventMap, 
+				EventType.TextType.values(), 
+				ChangeEvent.class);
+		putEventMap(obj, 
+				eventMap, 
+				EventType.ClickType.values(), 
+				MouseEvent.class);
 		if(eventMap.size() > 0){
 			try {
-				TextService service = (TextService) getBean("textService");
-				service.setComponent(component);
-				service.setControl((AbstractControl) this);
-				service.setEventMap(eventMap);
+				putService("textService", component, eventMap);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -151,7 +168,7 @@ public abstract class AbstractControl_Basi{
 	 * @see com.bean.support.ReSetterGetter#getProperty(String)
 	 * @since 1.0
 	 */
-	protected void putEventMap(Map<String, Method> map, String field, ReSetterGetter object, Class<?> typeParame){
+	protected void putFieldEventMap(Map<String, Method> map, String field, ReSetterGetter object, Class<?> typeParame){
 		try {
 			String methodName = (String) object.getProperty(field);
 			if(methodName != null){
@@ -175,9 +192,12 @@ public abstract class AbstractControl_Basi{
 	 * @see #createSetterGetter(BasiDoMain)
 	 * @since 1.0
 	 */
-	protected void  putClickEventMap(ReSetterGetter obj, Map<String, Method> eventMap) {
-		for(EventType.ClickType type : EventType.ClickType.values()){
-			putEventMap(eventMap, type.toString(), obj, MouseEvent.class);
+	protected <T> void  putEventMap(ReSetterGetter obj, 
+			Map<String, Method> eventMap, 
+			T[] types,
+			Class<?> classType) {
+		for(T type : types){
+			putFieldEventMap(eventMap, type.toString(), obj, classType);
 		}
 	}
 	

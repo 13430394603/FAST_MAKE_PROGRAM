@@ -1,34 +1,18 @@
 package com.awt.control;
 
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.awt.anlyxml.TestXML;
 import com.awt.context.ProgramContext;
 import com.awt.dealComponentImpl.AbstractDealComponent;
-import com.awt.dealComponentImpl.DealComponent;
 import com.awt.dealComponentImpl.ReFun;
 import com.awt.domain.BasiDoMain;
-import com.awt.domain.ButtonDoMain;
-import com.awt.domain.ContainerDoMain;
-import com.awt.domain.ContainerBasiDoMain;
 import com.awt.domain.DoMain;
-import com.awt.domain.LabelDoMain;
 import com.awt.domain.Navig;
 import com.awt.domain.ProgramDoMain;
-import com.awt.domain.RadioDoMain;
-import com.awt.domain.ServiceDoMain;
-import com.awt.domain.TextAreaDoMain;
-import com.awt.domain.TextDoMain;
-import com.awt.enuma.TagType;
-import com.awt.service.ProgramService;
 import com.awt.util.Print;
-import com.bean.exception.BeanSupportException;
 import com.bean.support.ReSetterGetter;
 import com.gui.DComp.DComp;
-import com.gui.DComp.DCompContainer;
 
 /**
  * <b>抽象控制类 基类</b>
@@ -129,22 +113,16 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 			if(navigs != null && nowObj != null){
 				ReSetterGetter setGetDoMain = (ReSetterGetter) getBean("setGetObject");
 				setGetDoMain.setObject(domain);
-				ReSetterGetter setGetDealComp = (ReSetterGetter) getBean("setGetObject");
-				setGetDealComp.setObject(dealObj);
 				for(Navig navig_ : navigs){
 					if(!navig_.name.equals("service")){
-						String addStr = navig_.name.substring(0, 1).toUpperCase() + 
-								navig_.name.substring(1, navig_.name.length());
-						Method method = setGetDealComp.getMethod("deal"+addStr, DComp.class, Object.class, ReFun.class);	 
-						method.invoke(dealObj, nowObj, 
+						dealObj.dealComponent(nowObj, 
 								setGetDoMain.getProperty(navig_.name), 
 								new ReFun(){
 									@Override
 									public DComp reDo(DoMain ctn) {
 										return dealDoMain(ctn, navig_);
 									}
-								}
-						);
+								});
 					}else
 						dealObj.dealService(nowObj, ((BasiDoMain) domain).getService());
 				}
