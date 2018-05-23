@@ -4,15 +4,12 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.awt.annotation.Control;
-import com.awt.control.AbstractControl;
 import com.awt.control.AbstractControlEtc;
 import com.gui.DComp.DProgressBar_G;
 import com.gui.typeStyle.DefaultTextArea;
-import com.gui.typeStyle.ProgressBar;
 import com.stream.Stream.Resource;
 /**
  * <b>cutJar界面类</b>

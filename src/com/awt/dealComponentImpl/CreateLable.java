@@ -4,15 +4,11 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import com.awt.control.AbstractControl_Basi;
-import com.awt.domain.BasiDoMain;
 import com.awt.domain.DoMain;
 import com.awt.enuma.EventType;
 import com.awt.enuma.TagType;
 import com.awt.service.Service;
-import com.awt.util.Print;
 import com.bean.support.ReSetterGetter;
-import com.gui.DComp.DComp;
 
 public class CreateLable extends DealComponent {
 	@SuppressWarnings("unchecked")

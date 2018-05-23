@@ -1,6 +1,6 @@
 package com.awt.control;
 
-import java.util.List;
+/*import java.util.List;
 
 import com.awt.anlyxml.TestXML;
 import com.awt.context.ProgramContext;
@@ -22,7 +22,7 @@ import com.awt.util.Print;
 import com.bean.exception.BeanSupportException;
 import com.bean.support.ReSetterGetter;
 import com.gui.DComp.DComp;
-import com.gui.DComp.DCompContainer;
+import com.gui.DComp.DCompContainer;*/
 
 /**
  * <b>抽象控制类 基类</b>
@@ -35,18 +35,18 @@ import com.gui.DComp.DCompContainer;
  * @since 1.0
  */
 public abstract class AbstractControl extends AbstractControl_Basi {
-	private final String FRAME_TAG_NAME = "program";
+	/*private final String FRAME_TAG_NAME = "program";
 	private final String CONTAINER_TAG_NAME = "container";
 	private final String BUTTON_TAG_NAME = "button";
 	private final String LABEL_TAG_NAME = "label";
 	private final String TEXT_TAG_NAME = "text";
 	private final String SERVER_TAG_NAME = "service";
 	private final String TEXTAREA_TAG_NAME = "textarea";
-	private final String RADIO_TAG_NAME = "radio";
+	private final String RADIO_TAG_NAME = "radio";*/
 	
-	private TestXML test;
+	/*private TestXML test;*/
 	
-	protected AbstractControl(){
+	/*protected AbstractControl(){
 		reflectObject = new ReSetterGetter();
 		try {
 			reflectObject.setObject(this);
@@ -55,7 +55,7 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 		}
 		init();
 		execute();
-	}
+	}*/
 	
 	/**
 	 * Control类启动
@@ -63,7 +63,7 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 	 * void
 	 * @since 1.0
 	 */
-	protected abstract void execute();
+	/*protected abstract void execute();*/
 	
 	/**
 	 * Control类初始化
@@ -72,7 +72,7 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 	 * @see
 	 * @since 1.0
 	 */
-	protected void init(){
+	/*protected void init(){
 		test = new TestXML();
 		//获取当前控制类的名称处理首字母小写当作配置文件的名称创建TestXML
 		String className = this.getClass().getSimpleName();
@@ -83,7 +83,7 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 		}
 		ProgramDoMain p = (ProgramDoMain) test.doStart();
 		ProgramContext.getContext().put(p.getName(), ((DComp) dealXml(p, test.getNavig())).getComponent());
-	}
+	}*/
 	
 	/**
 	 * 自定义导航对象
@@ -94,9 +94,9 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 	 * @see com.awt.anlyxml.TestXML#setNavig(Navig)
 	 * @since 1.0
 	 */
-	public void setNavig(Navig navig){
+	/*public void setNavig(Navig navig){
 		test.setNavig(navig);
-	}
+	}*/
 	
 	/**
 	 * 
@@ -112,7 +112,7 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 	 * @see #dealService(DComp, List)
 	 * @since 1.0
 	 */
-	protected DComp dealXml(DoMain domain, Navig navig){
+	/*protected DComp dealXml(DoMain domain, Navig navig){
 		Print.out(this, "dealXml", "导航名称："+navig.name);
 		DComp nowObj = createDComp(navig.name, domain);
 		List<Navig> navigs = navig.next;
@@ -145,10 +145,10 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 			}
 		}
 		return nowObj;
-	}
+	}*/
  
 	//创建组件封装对象
-	protected DComp createDComp(String name, DoMain domain){
+	/*protected DComp createDComp(String name, DoMain domain){
 		DComp nowObj = null;
 		switch(name){
 			case FRAME_TAG_NAME :
@@ -299,5 +299,5 @@ public abstract class AbstractControl extends AbstractControl_Basi {
 	}
 	protected Object getComponentByName(String name){
 		return ProgramContext.getContext().get(name);
-	}
+	}*/
 }

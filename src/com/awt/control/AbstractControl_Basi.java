@@ -1,24 +1,9 @@
 package com.awt.control;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.swing.JComponent;
-import javax.swing.event.ChangeEvent;
 
 import com.awt.context.ProgramContext;
-import com.awt.domain.BasiDoMain;
-import com.awt.domain.DoMain;
-import com.awt.domain.TextDoMain;
-import com.awt.domain.WinEventDoMain;
-import com.awt.enuma.EventType;
-import com.awt.service.Service;
-import com.awt.util.Print;
 import com.awt.util.UtilBeanContext;
-import com.bean.exception.BeanSupportException;
 import com.bean.support.ReSetterGetter;
 import com.gui.DComp.DComp;
 /**
@@ -50,7 +35,7 @@ public abstract class AbstractControl_Basi{
 	 * @see #createSetterGetter(BasiDoMain)
 	 * @since 1.0
 	 */
-	public DComp createProgramService(DoMain domain, DComp component){
+	/*public DComp createProgramService(DoMain domain, DComp component){
 		WinEventDoMain program = (WinEventDoMain) domain;
 		
 		ReSetterGetter obj = createSetterGetter(program);
@@ -68,7 +53,7 @@ public abstract class AbstractControl_Basi{
 			}
 		}
 		return component;
-	}
+	}*/
 
 	/**
 	 * 给组件put一个service服务对象
@@ -81,13 +66,13 @@ public abstract class AbstractControl_Basi{
 	 * @see
 	 * @since 1.0
 	 */
-	protected void putService(String beanId, DComp component, 
+	/*protected void putService(String beanId, DComp component, 
 			Map<String, Method> eventMap) throws Exception {
 		Service service = (Service) getBean(beanId);
 		service.setComponent(component);
 		service.setControl(this);
 		service.setEventMap(eventMap);
-	}
+	}*/
 	
 	/**
 	 * 读取标签属性创建点击服务类
@@ -98,7 +83,7 @@ public abstract class AbstractControl_Basi{
 	 * @see #putClickEventMap(Object, Map)
 	 * @since 1.0
 	 */
-	public DComp createClickService(DoMain domain, DComp component){
+	/*public DComp createClickService(DoMain domain, DComp component){
 		BasiDoMain domain_ = (BasiDoMain) domain;
 		
 		ReSetterGetter reSetterGetter = createSetterGetter(domain_);
@@ -116,7 +101,7 @@ public abstract class AbstractControl_Basi{
 			}
 		}
 		return component;
-	}
+	}*/
 	
 	/**
 	 * 读取标签属性创建文本服务类
@@ -129,7 +114,7 @@ public abstract class AbstractControl_Basi{
 	 * @see #putClickEventMap(BasiDoMain, Map)
 	 * @since 1.0
 	 */
-	public DComp createTextService(DoMain domain, DComp component){
+	/*public DComp createTextService(DoMain domain, DComp component){
 		TextDoMain domain_ = (TextDoMain) domain;
 		
 		ReSetterGetter obj = createSetterGetter(domain_);
@@ -151,7 +136,7 @@ public abstract class AbstractControl_Basi{
 			}
 		}
 		return component;
-	}
+	}*/
 	
 	/**
 	 * 向map中注入一个项
@@ -168,7 +153,7 @@ public abstract class AbstractControl_Basi{
 	 * @see com.bean.support.ReSetterGetter#getProperty(String)
 	 * @since 1.0
 	 */
-	protected void putFieldEventMap(Map<String, Method> map, String field, ReSetterGetter object, Class<?> typeParame){
+	/*protected void putFieldEventMap(Map<String, Method> map, String field, ReSetterGetter object, Class<?> typeParame){
 		try {
 			String methodName = (String) object.getProperty(field);
 			if(methodName != null){
@@ -179,7 +164,7 @@ public abstract class AbstractControl_Basi{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	/**
 	 * 将DoMain对象中的数据注入eventMap中 
@@ -192,14 +177,14 @@ public abstract class AbstractControl_Basi{
 	 * @see #createSetterGetter(BasiDoMain)
 	 * @since 1.0
 	 */
-	protected <T> void  putEventMap(ReSetterGetter obj, 
+	/*protected <T> void  putEventMap(ReSetterGetter obj, 
 			Map<String, Method> eventMap, 
 			T[] types,
 			Class<?> classType) {
 		for(T type : types){
 			putFieldEventMap(eventMap, type.toString(), obj, classType);
 		}
-	}
+	}*/
 	
 	/**
 	 * 创建一个ReSetterGetter对象
@@ -209,7 +194,7 @@ public abstract class AbstractControl_Basi{
 	 * ReSetterGetter	
 	 * @since 1.0
 	 */
-	protected ReSetterGetter createSetterGetter(BasiDoMain domain_) {
+	/*protected ReSetterGetter createSetterGetter(BasiDoMain domain_) {
 		ReSetterGetter obj = new ReSetterGetter(); 
 		try { 
 			obj.setObject(domain_);
@@ -217,7 +202,7 @@ public abstract class AbstractControl_Basi{
 			e.printStackTrace(); 
 		}
 		return obj;
-	}
+	}*/
 	
 	/**
 	 * 通过id以bean的方式创建对象
