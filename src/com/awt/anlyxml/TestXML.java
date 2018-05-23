@@ -15,11 +15,14 @@ import com.bean.support.SetterGetter;
 /**
  * <b>解析xml文件生成domain对象</b>
  * <p>
- * 描述:
+ * 描述:<br>
+ * 通过beans获取实例化的domain对象，因此要在beans配置文件中配置相关bean数据信息 ，
+ * beanID要和相应的导航对象对应（即标签名称），达到解耦。<br>
+ * 生成domain数据通过beans的setter、getter方法对相应的属性反射写入属性值<br>
  * <p>
- * 通过beans获取实例化的domain对象，因此要在beans配置文件中配置相关bean数据信息 ，beanID要和相应的导航对象对应（即标签名称），达到解耦。
- * <p>
- * 生成domain数据通过beans的setter、getter方法对相应的属性反射写入属性值
+ * 准备工作是：<br>
+ * 需要在bean中配置标签对应的domain实体对象--bean中的名称要与标签名相同<br>
+ * 接着实体类中的属性要与标签中的属性一致
  * @author 威 
  * <br>2018年4月13日 下午11:01:54 
  * @see com.bean.support.SetterGetter
@@ -28,12 +31,12 @@ import com.bean.support.SetterGetter;
  * @since 1.0
  */
 public class TestXML extends AbstractAnalyXML {
+	private int num = 0;
 	//启动解析
 	public DoMain doStart(){
 		Navig navig = this.navig;
 		return dealStep1(this.doc, navig);
 	}
-	
 	/**
 	 * 获取NodeList对象
 	 * <p>	 
@@ -55,11 +58,16 @@ public class TestXML extends AbstractAnalyXML {
 		return dealStep2(parentDoMain,childNodes, naivg);
 	}
 
-	private int num = 0;
+	
 	/**
 	 * 处理NodeList对象中的子元素
 	 * <p>
-	 * 通过beans获取实例化的domain对象，因此要在beans配置文件中配置相关bean数据信息 ，beanID要和相应的导航对象对应（即标签名称），达到解耦。
+	 * 通过beans获取实例化的domain对象，因此要在beans配置文件中配置相关bean数据信息 ，
+	 * beanID要和相应的导航对象对应（即标签名称），达到解耦。
+	 * <br>
+	 * 所有的操作都是通过反射注入到domain实体对象中的，如果domain对象的属性和标签中的属性不一致，那么将会引起异常
+	 * <br>
+	 * 因此需注意的是，标签中属性名要与domain中属性名对应
 	 * @param nodes	子节点NodeList对象
 	 * @param naivg	导航对象
 	 * @return
