@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program name="mainFrame2"
+	 type="definedwin" 
+	 size="240*2 385" 
+	 title="cutJar" 
+	 padding="10 10"
+	 layout="vertline_layout">
+	<container type="normal" 
+			size="200*2 50"
+			border="black 1"
+			layout="horiline_layout">
+		<button type="transparent" size="50 parent"></button>
+		<button type="transparent" size="50 parent"></button>
+		<button type="transparent" size="50 parent"></button>
+		<button type="transparent" size="50 parent"></button>
+	</container>
+	<container type="normal" 
+			size="parent 50"
+			border="black 1"
+			margin="1*10 0">
+		<button type="transparent" size="default 20"></button>
+	</container>
+	<container type="normal" 
+			size="parent 50"
+			border="black 1"
+			margin="0 0">
+		<button type="transparent" size="default 20"></button>
+	</container>
+</program>
