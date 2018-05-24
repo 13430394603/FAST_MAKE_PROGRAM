@@ -164,9 +164,9 @@ public interface GuiEnum {
 						Integer.parseInt(((BasiDoMain) parent).getPadding_top());
 				return height - padding_top*2;
 			}
-		},DEFAULT{
+		},HALF_PARENT{
 			public String toString(){
-				return "default";
+				return "half_parent";
 			}
 			public int getWidthVal(DoMain parent){
 				Integer width = Integer.parseInt(((BasiDoMain) parent).getWidth());

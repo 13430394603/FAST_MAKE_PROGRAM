@@ -90,8 +90,10 @@
 	  	2、可以使用表达式
 	  		size padding margin 中的数字可以使用数学表达式--例如：120*2
 	  		com.awt.util.Arithmetic转换数学表达式
-	  	3、容器增加布局属性[layout]
-	  		default_layout		无布局
+	  	3、相对父元素字段或值
+	  		size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
+	  	4、容器增加布局属性[layout]
+	  		default_layout			无布局
 	  		vertline_layout		垂直流线布局
 	  		horiline_layout		水平流线布局
 	  		新增包结构：
@@ -101,9 +103,9 @@
 	  					DefaultLayout.java
 	  					VertLineLayout.java
 	  					HoriLineLayout.java
-	  	4、将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象
+	  	5、将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象
 	  		意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
-	  	5、核心类的优化，便于扩展
+	  	6、核心类的优化，便于扩展
 	  		1).优化AbstractControl_Basi、AbstractControlEtc
 	  			将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展
         			新增功能接口（在控制类中向程序窗口添加元素）
