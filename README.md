@@ -111,11 +111,12 @@
             		4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
 			5).在配置文件中增加配置（systemConf.systemConf.xml）
 				增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean>
-				增加<bean id="create_组件标签名称" 						class="com.awt.dealComponentImpl.组件处理对象类名"></bean>
+				增加<bean id="create_组件标签名称" 
+					class="com.awt.dealComponentImpl.组件处理对象类名"></bean>
          	2. service扩展（负责组件事件的创建）
-			com.awt.domain包中以Service为父类增加对应的服务类
-			在配置文件中增加配置（systemConf.systemConf.xml）
-			<bean id="service名称" class="com.awt.service.服务类名"></bean>	   
+			1).com.awt.domain包中以Service为父类增加对应的服务类
+			2).在配置文件中增加配置（systemConf.systemConf.xml）
+				<bean id="service名称" class="com.awt.service.服务类名"></bean>	   
 			      	   
 	已有标签说明：
             1. 所有组件共同属性：{
