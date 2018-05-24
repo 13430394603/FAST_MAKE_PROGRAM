@@ -105,10 +105,10 @@
         
 	扩展
          	1. 标签扩展
-         		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
-            		2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
-            		3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象
-            		4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
+         		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
+         		2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
+         		3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象
+         		4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
 			5).在配置文件中增加配置（systemConf.systemConf.xml）
 				增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean>
 				增加<bean id="create_组件标签名称" 
