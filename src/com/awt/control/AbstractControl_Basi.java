@@ -227,22 +227,11 @@ public abstract class AbstractControl_Basi{
 	 * @see com.awt.context.ProgramContext#getContext()
 	 * @since 1.0
 	 */
-	protected Object getComponentByName(String name){
-		return ProgramContext.getContext().get(name);
+	protected DComp getDCompByName(String name){
+		return (DComp) ProgramContext.getContext().get(name);
 	}
-	
-	/**
-	 * 向指定名称的容器添加组件
-	 * <p>	 
-	 * @param parentCompName	容器名称
-	 * @param comp				组件对象
-	 * @return
-	 * JComponent
-	 * @see #getComponentByName(String)
-	 * @since 1.0
-	 */
-	protected JComponent add(String parentCompName, JComponent comp){
-		return (JComponent) ((JComponent) getComponentByName(parentCompName)).add(comp);
+	protected Object getComponentByName(String name){
+		return ((DComp) ProgramContext.getContext().get(name)).getComponent();
 	}
 	
 	/**

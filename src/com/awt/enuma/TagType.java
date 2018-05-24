@@ -13,22 +13,22 @@ import com.awt.domain.ProgramDoMain;
 import com.awt.domain.RadioDoMain;
 import com.awt.domain.TextAreaDoMain;
 import com.awt.domain.TextDoMain;
-import com.gui.DComp.DButton_G;
-import com.gui.DComp.DButton_Transparent;
 import com.gui.DComp.DComp;
 import com.gui.DComp.DCompContainer;
 import com.gui.DComp.DFrame;
-import com.gui.DComp.DFrame_Defined;
-import com.gui.DComp.DFrame_G;
-import com.gui.DComp.DLabel_G;
-import com.gui.DComp.DLabel_Transparent;
-import com.gui.DComp.DPanel_Transparent;
 import com.gui.DComp.DRadio;
-import com.gui.DComp.DTextArea_G;
-import com.gui.DComp.DTextPass_G;
-import com.gui.DComp.DTextPass_Transparent;
-import com.gui.DComp.DText_G;
-import com.gui.DComp.DText_Transparent;
+import com.gui.DComp.DComponent.DButton_G;
+import com.gui.DComp.DComponent.DButton_Transparent;
+import com.gui.DComp.DComponent.DFrame_Defined;
+import com.gui.DComp.DComponent.DFrame_G;
+import com.gui.DComp.DComponent.DLabel_G;
+import com.gui.DComp.DComponent.DLabel_Transparent;
+import com.gui.DComp.DComponent.DPanel_Transparent;
+import com.gui.DComp.DComponent.DTextArea_G;
+import com.gui.DComp.DComponent.DTextPass_G;
+import com.gui.DComp.DComponent.DTextPass_Transparent;
+import com.gui.DComp.DComponent.DText_G;
+import com.gui.DComp.DComponent.DText_Transparent;
 import com.stream.Stream.Resource;
 /**
  * <b>管理标签类型的接口</b>
@@ -62,19 +62,20 @@ public interface TagType{
 			}
 			@SuppressWarnings("deprecation")
 			public DComp getComponent(DoMain domain){
-				DFrame frame = new DFrame_Defined(ProgramContext.getContext());
+				DFrame comp = new DFrame_Defined(ProgramContext.getContext());
 				ProgramDoMain domain_ = (ProgramDoMain) domain;
-				frame.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
-				frame.setName(domain_.getName());
-				frame.setSize(domain_.getWidth(), domain_.getHeight());
-				frame.setTitle(domain_.getTitle());
-				frame.setPadding(domain_.getPadding_left(), domain_.getPadding_top());
+				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
+				comp.setName(domain_.getName());
+				comp.setDefiLayout(domain_.getLayout());
+				comp.setSize(domain_.getWidth(), domain_.getHeight());
+				comp.setTitle(domain_.getTitle());
+				comp.setPadding(domain_.getPadding_left(), domain_.getPadding_top());
 				try {
-					frame.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
+					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
-				return frame;
+				return comp;
 			}
 		},
 		WINDOW_2{
@@ -90,6 +91,7 @@ public interface TagType{
 				comp.setTitle(domain_.getTitle());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setPadding(domain_.getPadding_left(), domain_.getPadding_top());
+				comp.setDefiLayout(domain_.getLayout());
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
@@ -131,6 +133,11 @@ public interface TagType{
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setPadding(domain_.getPadding_left(), domain_.getPadding_top());
+				comp.setDefiLayout(domain_.getLayout());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
@@ -177,6 +184,10 @@ public interface TagType{
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setPadding(domain_.getPadding_left(), domain_.getHeight());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
@@ -204,6 +215,10 @@ public interface TagType{
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setPadding(domain_.getPadding_left(), domain_.getHeight());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
@@ -251,7 +266,10 @@ public interface TagType{
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setPadding(domain_.getPadding_left(), domain_.getHeight());
-				
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
 				} catch (MalformedURLException e) {
@@ -279,6 +297,10 @@ public interface TagType{
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setPadding(domain_.getPadding_left(), domain_.getHeight());
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
@@ -316,6 +338,10 @@ public interface TagType{
 				DComp comp = new DText_Transparent(domain_.getValue());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				return comp;
 			}
@@ -328,6 +354,10 @@ public interface TagType{
 				DComp comp = new DText_G(domain_.getValue());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				return comp;
 			}
@@ -341,6 +371,10 @@ public interface TagType{
 				DComp comp = new DTextPass_Transparent(domain_.getValue());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				return comp;
 			}
@@ -353,6 +387,10 @@ public interface TagType{
 				DComp comp = new DTextPass_G(domain_.getValue());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				return comp;
 			}
@@ -375,6 +413,10 @@ public interface TagType{
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setEditable(domain_.isEditable());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setVisible(domain_.isVisable());
 				try {
 					comp.setBackgroundImage(new ImageIcon(Resource.getResource(domain_.getSrc()).toURL()));
@@ -400,6 +442,10 @@ public interface TagType{
 				DRadio comp = new DRadio(domain_.getValue());
 				comp.setSize(domain_.getWidth(), domain_.getHeight());
 				comp.setMargin(domain_.getMargin_left(), domain_.getMargin_top());
+				if(domain_.isHasBorder()){
+					comp.setBorder(domain_.getBorder_color(), 
+							domain_.getBorder_size());
+				}
 				comp.setFont(domain_.getFont_name(), domain_.getFont_style(), domain_.getFont_size());
 				comp.setVisible(domain_.isVisable());
 				try {

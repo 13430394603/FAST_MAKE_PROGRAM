@@ -22,4 +22,28 @@ public class Util {
         }  
         return false ;
 	}
+	/**
+	 * 将复合属性解析成一个数组对象
+	 * <p>	 
+	 * 月界异常可能为属性值错误<br>
+	 * java.lang.ArrayIndexOutOfBoundsException<br>
+	 * @param fields
+	 * @param len
+	 * @return
+	 * Object[]
+	 * @see
+	 * @since 1.0
+	 */
+	public static String[] getArrFields(String fields, Integer len){
+		Integer start = 0;
+		Integer index = 0;
+		Integer i = 0;
+		String[] arr = new String[len];
+		while((index = fields.indexOf(" ", start)) != -1){
+			arr[i++] = fields.substring(start, index);
+			start = index + 1;
+		}
+		arr[i++] = fields.substring(start, fields.length());
+		return arr;
+	}
 }

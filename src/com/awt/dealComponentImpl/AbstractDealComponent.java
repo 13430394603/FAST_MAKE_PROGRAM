@@ -121,14 +121,12 @@ public abstract class AbstractDealComponent {
 	 * @see
 	 * @since 1.0
 	 */
-	public DComp dealService(DoMain domain, DComp component, AbstractControl_Basi control){
+	protected DComp dealService(DoMain domain, DComp component, AbstractControl_Basi control){
 		BasiDoMain domain_ = (BasiDoMain) domain;
 		ReSetterGetter reSetterGetter = createSetterGetter(domain_);
 		Map<String, Method> eventMap = new HashMap<String, Method>();
 		serviceEventMap(reSetterGetter, eventMap);
-		if(eventMap.size() > 0){
-			putService(component, eventMap, control);
-		}
+		if(eventMap.size() > 0) putService(component, eventMap, control);
 		return component;
 	}
 	/**

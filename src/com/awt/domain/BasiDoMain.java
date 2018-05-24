@@ -3,21 +3,50 @@ package com.awt.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.awt.util.Arithmetic;
+import com.awt.util.Util;
+
 /**
  * <b>任何组件<b>
  * @author 威 
  * <br>2018年4月10日 下午11:14:16 
  */
 public class BasiDoMain extends DoMain{
+	protected String layout;
+	public String getLayout() {
+		return layout;
+	}
+	public void setLayout(String layout) {
+		this.layout = layout;
+	}
 	protected String type;
 	protected String name;
-	protected Integer width;
-	protected Integer height;
-	protected Integer margin_left;
-	protected Integer margin_top;
-	protected Integer padding_left;
-	protected Integer padding_top;
+	protected String width;
+	protected String height;
+	protected String size;				//复合对象
+	public void setSize(String fields){
+		String[] arr =  Util.getArrFields(fields, 2);
+		setWidth(Arithmetic.toPosifixStr(arr[0]));
+		setHeight(Arithmetic.toPosifixStr(arr[1]));
+	}
+	protected String margin_left;
+	protected String margin_top;
+	protected String margin;			//复合对象
+	public void setMargin(String fields){
+		String[] arr =  Util.getArrFields(fields, 2);
+		setMargin_left(arr[0]);
+		setMargin_top(arr[1]);
+	}
+	protected String padding_left;
+	protected String padding_top;
+	protected String padding;			//复合对象
+	public void setPadding(String fields){
+		String[] arr =  Util.getArrFields(fields, 2);
+		setPadding_left(arr[0]);
+		setPadding_top(arr[1]);
+	}
 	protected boolean visable;
+	protected boolean hasBorder;
 	protected String src;
 	
 	protected List<ServiceDoMain> services;
@@ -30,25 +59,60 @@ public class BasiDoMain extends DoMain{
 	private String mouseout;
 	
 	protected String font_style;
-	protected int font_size;
+	protected String font_size;
 	protected String font_name;
+	protected String font; 			//复合对象
+	public void setFont(String fields){
+		String[] arr =  Util.getArrFields(fields, 3);
+		setFont_name(arr[0]);
+		setFont_style(arr[1]);
+		setFont_size(arr[2]);
+	}
+	
+	
+	protected String border_color;
+	protected String border_size;
+	protected String border;		//复合对象
+	public void setBorder(String fields){
+		hasBorder = true;
+		String[] arr =  Util.getArrFields(fields, 2);
+		setBorder_color(arr[0]);
+		setBorder_size(arr[1]);
+	}
+	public String getBorder_color() {
+		return border_color;
+	}
+
+	public void setBorder_color(String border_color) {
+		this.border_color = border_color;
+	}
+
+	public String getBorder_size() {
+		return border_size;
+	}
+
+	public void setBorder_size(String border_size) {
+		this.border_size = border_size;
+	}
 	
 	protected String value;
 	
 	public BasiDoMain(){
-		type = "normal";
-		width = 1;
-		height = 1;
-		margin_left = 0;
-		margin_top = 0;
-		padding_left = 0;
-		padding_top = 0;
-		visable = true;
-		value = "";
-		font_name = "宋体";
-		font_size = 12;
-		font_style = "plain";
-		services = new ArrayList<ServiceDoMain>();
+		type 			= "normal";
+		width 			= "1";
+		height 			= "1";
+		margin_left 	= "0";
+		margin_top 		= "0";
+		padding_left 	= "0";
+		padding_top 	= "0";
+		visable 		= true;
+		value 			= "";
+		font_name 		= "宋体";
+		font_size 		= "12";
+		font_style 		= "plain";
+		services 		= new ArrayList<ServiceDoMain>();
+		hasBorder 		= false;
+		layout			= "default_layout";
 	}
 	
 	public String getSrc() {
@@ -113,34 +177,31 @@ public class BasiDoMain extends DoMain{
 	public void setType(String type) {
 		this.type = type;
 	}
-	public Integer getWidth() {
+	public String getWidth() {
 		return width;
 	}
-	public void setWidth(Integer width) {
+	public  void setWidth(String width) {
 		this.width = width;
 	}
-	public Integer getHeight() {
+	public String getHeight() {
 		return height;
 	}
-	public void setHeight(Integer height) {
+	public  void setHeight(String height) {
 		this.height = height;
 	}
-	public Integer getMargin_left() {
+	public String getMargin_left() {
 		return margin_left;
 	}
-	public void setMargin_left(Integer margin_left) {
+	public  void setMargin_left(String margin_left) {
 		this.margin_left = margin_left;
 	}
-	public Integer getMargin_top() {
+	public String getMargin_top() {
 		return margin_top;
 	}
-	public void setMargin_top(Integer margin_top) {
+	public  void setMargin_top(String margin_top) {
 		this.margin_top = margin_top;
 	}
-	public void setMargin(Integer margin_left, Integer margin_top){
-		this.margin_top = margin_top;
-		this.margin_left = margin_left;
-	}
+	
 	public void addService(ServiceDoMain service) {
 		this.services.add(service);
 	}
@@ -154,10 +215,10 @@ public class BasiDoMain extends DoMain{
 	public void setFont_style(String font_style) {
 		this.font_style = font_style;
 	}
-	public int getFont_size() {
+	public String getFont_size() {
 		return font_size;
 	}
-	public void setFont_size(int font_size) {
+	public void setFont_size(String font_size) {
 		this.font_size = font_size;
 	}
 	public String getFont_name() {
@@ -166,16 +227,18 @@ public class BasiDoMain extends DoMain{
 	public void setFont_name(String font_name) {
 		this.font_name = font_name;
 	}
-	public Integer getPadding_left() {
+	
+	public String getPadding_left() {
 		return padding_left;
 	}
-	public void setPadding_left(Integer padding_left) {
+	public  void setPadding_left(String padding_left) {
 		this.padding_left = padding_left;
 	}
-	public Integer getPadding_top() {
+	
+	public String getPadding_top() {
 		return padding_top;
 	}
-	public void setPadding_top(Integer padding_top) {
+	public  void setPadding_top(String padding_top) {
 		this.padding_top = padding_top;
 	}
 	
@@ -185,7 +248,17 @@ public class BasiDoMain extends DoMain{
 	public void setVisable(boolean visable) {
 		this.visable = visable;
 	}
+	public static void main(String[] args){
+		
+ 	}
 
+	public boolean isHasBorder() {
+		return hasBorder;
+	}
+	public void setHasBorder(boolean hasBorder) {
+		this.hasBorder = hasBorder;
+	}
+	
 	protected void appendTo(StringBuilder sb){
 		super.appendTo(sb);
 		sb.append(" name=").append(this.name);

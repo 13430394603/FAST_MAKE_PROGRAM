@@ -13,6 +13,7 @@ import com.awt.domain.ProgramDoMain;
 import com.awt.util.Print;
 import com.bean.support.ReSetterGetter;
 import com.gui.DComp.DComp;
+import com.gui.DComp.DFrame;
 
 /**
  * <b>抽象控制类 基类</b>
@@ -30,6 +31,7 @@ import com.gui.DComp.DComp;
  */
 public abstract class AbstractControlEtc extends AbstractControl_Basi {
 	private TestXML test;
+	private String frameName;
 	
 	protected AbstractControlEtc(){
 		try {
@@ -68,6 +70,7 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 			e.printStackTrace();
 		}
 		ProgramDoMain p = (ProgramDoMain) test.doStart();
+		frameName = p.getName();
 		ProgramContext.getContext().put(p.getName(), ((DComp) dealDoMain(p, test.getNavig())).getComponent());
 	}
 	
@@ -115,14 +118,14 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 				setGetDoMain.setObject(domain);
 				for(Navig navig_ : navigs){
 					if(!navig_.name.equals("service")){
-						dealObj.dealComponent(nowObj, 
-								setGetDoMain.getProperty(navig_.name), 
-								new ReFun(){
-									@Override
-									public DComp reDo(DoMain ctn) {
-										return dealDoMain(ctn, navig_);
-									}
-								});
+						dealObj.dealComponent(nowObj,
+							setGetDoMain.getProperty(navig_.name), 
+							new ReFun(){
+								@Override
+								public DComp reDo(DoMain ctn) {
+									return dealDoMain(ctn, navig_);
+								}
+							});
 					}else
 						dealObj.dealService(nowObj, ((BasiDoMain) domain).getService());
 				}
@@ -132,5 +135,16 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 		}
 		return nowObj;
 	}
-	
+	public void add(String key, DComp comp, Object jLayer){
+		DFrame frame = (DFrame) this.getDCompByName(frameName);
+		frame.add(key, comp, jLayer);
+	}
+	public void add(String key, DComp comp){
+		DFrame frame = (DFrame) this.getDCompByName(frameName);
+		frame.add(key, comp);
+	}
+	public void add(String key, DComp comp, int index){
+		DFrame frame = (DFrame) this.getDCompByName(frameName);
+		frame.add(key, comp, index);
+	}
 }

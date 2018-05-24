@@ -8,7 +8,8 @@ import javax.swing.JTextField;
 
 import com.awt.annotation.Control;
 import com.awt.control.AbstractControlEtc;
-import com.gui.DComp.DProgressBar_G;
+import com.gui.DComp.DComp;
+import com.gui.DComp.DComponent.DProgressBar_G;
 import com.gui.typeStyle.DefaultTextArea;
 import com.stream.Stream.Resource;
 /**
@@ -19,7 +20,7 @@ import com.stream.Stream.Resource;
  * @see com.awt.control.AbstractControl
  * @since 1.0
  */
-@Control
+/*@Control*/
 public class TestEtc extends AbstractControlEtc{
 	private boolean selectFlag;		//选择默认
 	private JTextField jrePath;		//jre目录
@@ -36,15 +37,16 @@ public class TestEtc extends AbstractControlEtc{
 	@Override
 	protected void execute() {
 		System.out.println("start program!");
-		jrePath = (JTextField) this.getComponentByName("jrePathText");
-		jarName = (JTextField) this.getComponentByName("jarName");
+		jrePath = (JTextField) getComponentByName("jrePathText");
+		jarName = (JTextField) getComponentByName("jarName");
 		cutName = ((JTextField) getComponentByName("cutNameText"));
 		showInfo = (DefaultTextArea) getComponentByName("showInfo");
 		
 		String imgPath = Resource.getResourceToString("img", "4444444.png");
 		ImageIcon img = new ImageIcon(imgPath);
 		bar = new DProgressBar_G(img);
-		add("progressbar", (JComponent) bar.getComponent());
+		DComp comp =  (DComp) getDCompByName("progressbar");
+		comp.add("", bar);
 		bar.setMargin(0, 0);
 		bar.setOrigSize(450, 6);
 		bar.slideTo(430);

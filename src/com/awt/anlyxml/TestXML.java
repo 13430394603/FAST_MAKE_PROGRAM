@@ -12,6 +12,7 @@ import com.awt.util.Print;
 import com.awt.util.Util;
 import com.awt.util.UtilBeanContext;
 import com.bean.support.SetterGetter;
+import com.gui.format.GuiEnum;
 /**
  * <b>解析xml文件生成domain对象</b>
  * <p>
@@ -55,9 +56,8 @@ public class TestXML extends AbstractAnalyXML {
 		NodeList childNodes = parentEle instanceof Document
 				? ((Document) parentEle).getElementsByTagName(naivg.name)
 				: ((Element) parentEle).getChildNodes();
-		return dealStep2(parentDoMain,childNodes, naivg);
+		return dealStep2(parentDoMain, childNodes, naivg);
 	}
-
 	
 	/**
 	 * 处理NodeList对象中的子元素
@@ -115,6 +115,7 @@ public class TestXML extends AbstractAnalyXML {
 									.append("(")
 									.append(((BasiDoMain) object).getName())
 									.append(")"));
+							dealSize(parentDoMain, object);
 							SetterGetter.setProperty(parentDoMain,
 									naivg.name,
 									object);
@@ -132,6 +133,29 @@ public class TestXML extends AbstractAnalyXML {
 			e.printStackTrace();
 		}
 		return object;
+	}
+	
+	/**
+	 * 处理组件size值--相对父元素
+	 * <p>	 
+	 * 当组件size值使用特殊字段‘parent default’这些相对父元素字段<br>
+	 * 则根据父元素的size对子元素进行获取值
+	 * @param parent
+	 * @param current
+	 * void
+	 * @see
+	 * @since 1.0
+	 */
+	public void dealSize(DoMain parent, DoMain current){
+		String width = ((BasiDoMain) current).getWidth();
+		String height = ((BasiDoMain) current).getHeight();
+		for(GuiEnum.RelativeSize type : GuiEnum.RelativeSize.values()){
+			if(type.toString().equals(height))
+				((BasiDoMain) current).setHeight(type.getHeightVal(parent)+"");
+			if(type.toString().equals(width))
+				((BasiDoMain) current).setWidth(type.getWidthVal(parent)+"");
+		}
+		System.out.println("处理size：" + width + " " + height);
 	}
 	
 	public String getSep(int num){
@@ -180,16 +204,10 @@ public class TestXML extends AbstractAnalyXML {
 	 */
 	protected Object getConformType(String value) {
 		value = value.replaceAll("\"", "");
-		if (value.equals("false") || value.equals("true")) {
+		if (value.equals("false") || value.equals("true")) 
 			return Boolean.parseBoolean(value);
-		}
-		else if (Util.isNumber(value)) {
-			return Integer.parseInt(value);
-		}
-		else {
+		 else 
 			return value;
-		}
-		
 	}
 }
 

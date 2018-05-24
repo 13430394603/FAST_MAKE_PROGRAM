@@ -146,4 +146,5 @@ public class Core {
 		className = className.replace(".class", "").replace("\\", ".");
 		return className;
 	}	
+	
 }
