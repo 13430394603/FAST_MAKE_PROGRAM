@@ -3,7 +3,7 @@
 
     目的：加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
     
-              过程：
+	过程：
         	1、启动Core。
         	2、加载标注有@Control并且继承Control_Basi类的界面对象。
         	3、并按照优先级实例化界面对象。
@@ -11,12 +11,12 @@
         	5、完成页面的加载。
         	
 	目的：
-     	1、加快开发的速度。
+		1、加快开发的速度。
         	2、界面参数集中管理。
         	3、界面与逻辑分开处理，降低依赖有效解耦。
         	
 	使用说明：
-		控制类的创建示例：
+		1).控制类的创建示例：
 			@Control
 			public class TestLayout extends AbstractControlEtc{
 				public TestLayout(){
@@ -27,7 +27,7 @@
 					System.out.println("启动!");
 				}
 			}
-		xml文件
+		2).xml文件
 			命名方式--界面控制类需与xml文件名命名处理xml首字母小写其余相同
 			例子：
 			<program name="mainFrame2"
@@ -58,24 +58,24 @@
 					<button type="transparent" size="default 20"></button>
 				</container>
 			</program>
-		img（根目录img文件）
+		3).img（根目录img文件）
 			ProgramBack.png	程序背景
 			ProgramIcon.png	菜单栏图标
 			ProgramIconMin.png	界面小图标
-		com.awt.annotation
+		4).com.awt.annotation
 			@Control(priority<默认为5,区间0-10>) 	界面控制类注解  
-		com.awt.core
+		5).com.awt.core
 			Core  				启动类--加载注解为@Control的控制类
-		com.awt.control（生成界面，所有界面都需继承控制类）
+		6).com.awt.control（生成界面，所有界面都需继承控制类）
 			AbstractControlEtc 		扩展控制类 
 	标签语法：
 		program::container | button | text | label | radio | textarea | service（事件服务）
         	container::button | text | label | radio | textarea | service（事件服务）
-       	button::service
-       	text::service
-     	label::service
-       	radio::service
-      	textarea::service  
+		button::service
+       		text::service
+     		label::service
+       		radio::service
+      		textarea::service  
 	更新    
 		18/5/24 
 		1、添加了符合属性
@@ -100,16 +100,16 @@
 	  					VertLineLayout.java
 	  					HoriLineLayout.java
 	  	4、核心类的优化，便于扩展
-	  		4 1、优化AbstractControl_Basi--将service的处理分离到
+	  		1).优化AbstractControl_Basi--将service的处理分离到
 	  		com.awt.dealComponentImpl包中的类处理，便于扩展
         
 	扩展
          	1. 标签扩展
-         		com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
-            	com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
-            	com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象
-            		负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
-			在配置文件中增加配置（systemConf.systemConf.xml）
+         		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
+            		2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
+            		3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象
+            		4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
+			5).在配置文件中增加配置（systemConf.systemConf.xml）
 				增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean>
 				增加<bean id="create_组件标签名称" 						class="com.awt.dealComponentImpl.组件处理对象类名"></bean>
          	2. service扩展（负责组件事件的创建）
