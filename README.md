@@ -68,6 +68,8 @@
 			Core  				启动类--加载注解为@Control的控制类
 		6).com.awt.control（生成界面，所有界面都需继承控制类）
 			AbstractControlEtc 		扩展控制类 
+		7).com.awt.context.ProgramContext
+			获取ContextMap对象，通过这个Map可获取xml文件中有属性name的组件
 	四、标签语法：
 		program::container | button | text | label | radio | textarea | service（事件服务）
         	container::button | text | label | radio | textarea | service（事件服务）
@@ -99,10 +101,16 @@
 	  					DefaultLayout.java
 	  					VertLineLayout.java
 	  					HoriLineLayout.java
-	  	4、核心类的优化，便于扩展
-	  		1).优化AbstractControl_Basi--将service的处理分离到
-	  		com.awt.dealComponentImpl包中的类处理，便于扩展
-        
+	  	4、将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象
+	  		意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
+	  	5、核心类的优化，便于扩展
+	  		1).优化AbstractControl_Basi、AbstractControlEtc
+	  			将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展
+        			新增功能接口（在控制类中向程序窗口添加元素）
+        				add(String key, DComp comp, Object jLayer)
+        				add(String key, DComp comp)
+        				add(String key, DComp comp, int index)
+        			
 	六、扩展
          	1. 标签扩展
          		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
