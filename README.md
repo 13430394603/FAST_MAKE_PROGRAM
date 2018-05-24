@@ -3,19 +3,19 @@
 
     目的：加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
     
-	过程：
+	一、过程：
         	1、启动Core。
         	2、加载标注有@Control并且继承Control_Basi类的界面对象。
         	3、并按照优先级实例化界面对象。
         	4、实例化的界面对象会扫描对应的配置文件创建gui组件并添加相应的事件。
         	5、完成页面的加载。
         	
-	目的：
+	二、目的：
 		1、加快开发的速度。
         	2、界面参数集中管理。
         	3、界面与逻辑分开处理，降低依赖有效解耦。
         	
-	使用说明：
+	三、使用说明：
 		1).控制类的创建示例：
 			@Control
 			public class TestLayout extends AbstractControlEtc{
@@ -68,7 +68,7 @@
 			Core  				启动类--加载注解为@Control的控制类
 		6).com.awt.control（生成界面，所有界面都需继承控制类）
 			AbstractControlEtc 		扩展控制类 
-	标签语法：
+	四、标签语法：
 		program::container | button | text | label | radio | textarea | service（事件服务）
         	container::button | text | label | radio | textarea | service（事件服务）
 		button::service
@@ -76,7 +76,7 @@
      		label::service
        		radio::service
       		textarea::service  
-	更新    
+	五、更新    
 		18/5/24 
 		1、添加了符合属性
 			[size="width height"] 
@@ -103,7 +103,7 @@
 	  		1).优化AbstractControl_Basi--将service的处理分离到
 	  		com.awt.dealComponentImpl包中的类处理，便于扩展
         
-	扩展
+	六、扩展
          	1. 标签扩展
          		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
          		2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
@@ -118,7 +118,7 @@
 			2).在配置文件中增加配置（systemConf.systemConf.xml）
 				<bean id="service名称" class="com.awt.service.服务类名"></bean>	   
 			      	   
-	已有标签说明：
+	七、已有标签说明：
             1. 所有组件共同属性：{
                 type / width(元素宽度) / margin_left(距离) / margin_top(距离) / height(元素高度) 
                 / name(context中的key值，不给则不添加进context) / font_style[bold|italic|plain](字体样式) 
