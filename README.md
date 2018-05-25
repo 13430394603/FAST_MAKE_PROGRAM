@@ -130,27 +130,27 @@
 			      	   
 	七、已有标签说明：
 		1. 属性名称定义与解释
-			type			标签组件类型
+			type		标签组件类型
 			width		元素宽度
 			height		元素高度
-			size			组件大小符合对象 -- <width height>
+			size		组件大小符合对象 -- <width height>
 			margin_left	左外边距
 			margin_top	上外边距
 			margin		外边距符合对象 -- <margin_left margin_top>
 			padding_left	左内边距 -- 通常用于容器标签属性
 			padding_top 	上内边距 -- 通常用于容器标签属性
 			padding		内边距符合对象 -- <padding_left padding_top>
-			name			context中的key值，不给则不添加进context
-          	font_style 	字体样式
-          		[bold|italic|plain]
-          	font_name		字体名称
-          	font_size		字体大小
-          	font 		字体符合对象 -- <font_style font_name font_size>
-          	title		程序窗口名称 -- 为program标签特有属性
-          	src			背景
-          	icon_src		图标
-          	value		文本值
-          	editable		是否可编辑 -- 用于textarea标签
+			name		context中的key值，不给则不添加进context
+          		font_style 	字体样式
+          			[bold|italic|plain]
+          		font_name	字体名称
+          		font_size	字体大小
+          		font 		字体符合对象 -- <font_style font_name font_size>
+          		title		程序窗口名称 -- 为program标签特有属性
+          		src		背景
+          		icon_src	图标
+          		value		文本值
+          		editable	是否可编辑 -- 用于textarea标签
        		
 		2.事件的定义与解释
 			1)点击事件
