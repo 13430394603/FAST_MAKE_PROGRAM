@@ -80,7 +80,7 @@
       		textarea::service  
 	五、更新    
 		18/5/24 
-		1、添加了符合属性
+		1、添加了复合属性
 			[size="width height"] 
 			[border="borderColor lineSize"]
 			[borderColor:gray|green|black|blue|cyan|pink|red|orange|yellow|lightGray]
@@ -113,7 +113,7 @@
         				add(String key, DComp comp)
         				add(String key, DComp comp, int index)
         			
-	六、扩展
+	六、架包扩展说明
          	1. 标签扩展
          		1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
          		2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
@@ -129,76 +129,64 @@
 				<bean id="service名称" class="com.awt.service.服务类名"></bean>	   
 			      	   
 	七、已有标签说明：
-            1. 所有组件共同属性：{
-                type / width(元素宽度) / margin_left(距离) / margin_top(距离) / height(元素高度) 
-                / name(context中的key值，不给则不添加进context) / font_style[bold|italic|plain](字体样式) 
-                /	font_name(字体名称) /	font_size(字体大小) 		
-            }			
-            2. 容器组件：
-                2.1. Program
-                    描述：一个window窗口
-                    属性: {
-                        type[normal|definedwin](组件类型) / padding_left(内边距) / padding_top(内边距) / title(标题)
-                    }
-                    事件：{
-                        onload（可以废弃，当前Control类的execute方法就是onload）/ close / focus / blur / hide / open
-                    }
-
-                2.2. Container
-                    描述：一个容器
-                    属性： {
-                        type[normal|progressbar（未实现）|autocnt(有滚动条容器，未实现)|textarea(文本编辑，未实现)] / padding_left 
-                        / padding_top / src
-                    }
-                    等待处理增加标签type：wincontainer
-            3. 一般组件：
-                3.1. Button
-                    描述：按钮组件
-                    属性: {
-                        type[normal|transparent] / value / padding_left / padding_top / src / icon_src(图标)
-                    }
-                    事件：{
-                        click / dbclick / mousedown / mouseup / mousemove / mouseout
-                    }
-                    特殊：type:transparent时添加不了图片
-                3.2. Label
-                    描述：label 显示组件
-                    属性: {
-                        type[normal|transparent] / value(文本值) / padding_left / padding_top / src / icon_src / text_align[left|center|right]
-                    }
-                    事件：{
-                        click / dbclick / mousedown / mouseup / mousemove / mouseout
-                    }
-                3.3. Text
-                    描述：输入框
-                    属性:{
-                        type[normal|transparent|pass_transparent|pass_normal] / value
-                    } 
-                    事件：{
-                        click / dbclick / mousedown / mouseup / mousemove / mouseout / change
-                    }
-
-                3.4. radio
-                    描述：选择
-                    属性：{
-                        type[normal] / value
-                    }
-                    事件：{
-                        click / dbclick / mousedown / mouseup / mousemove / mouseout 
-                    }
-                3.5. textarea:
-                    -------------------------------------------------------------------------------
-                    描述：文本框
-                    -------------------------------------------------------------------------------
-                    属性：{
-                        type[normal] / value / editable(是否可编辑)
-                    } 
-                    事件：{
-                        click / dbclick / mousedown / mouseup / mousemove / mouseout / change
-                    }
-                3.6. progressbar:
-                    描述：进度条
-                    属性：{
-                        type / orig_width(原始宽) / orig_height(原始高度) / slide_to(滑动到) / src
-                    }
+		1. 属性名称定义与解释
+			type			标签组件类型
+			width		元素宽度
+			height		元素高度
+			size			组件大小符合对象 -- <width height>
+			margin_left	左外边距
+			margin_top	上外边距
+			margin		外边距符合对象 -- <margin_left margin_top>
+			padding_left	左内边距 -- 通常用于容器标签属性
+			padding_top 	上内边距 -- 通常用于容器标签属性
+			padding		内边距符合对象 -- <padding_left padding_top>
+			name			context中的key值，不给则不添加进context
+          	font_style 	字体样式
+          		[bold|italic|plain]
+          	font_name		字体名称
+          	font_size		字体大小
+          	font 		字体符合对象 -- <font_style font_name font_size>
+          	title		程序窗口名称 -- 为program标签特有属性
+          	src			背景
+          	icon_src		图标
+          	value		文本值
+          	editable		是否可编辑 -- 用于textarea标签
+       		
+		2.事件的定义与解释
+			1)点击事件
+				click		点击
+				dbclick		双击
+				mousedown		释放
+				mouseup		按下
+				mousemove		鼠标在元素内滑过
+				mouseout		鼠标滑出
+			2)窗口事件
+				close		关闭	
+				focus		获取焦点
+				blur			失去焦点
+				hide			隐藏
+				open			隐藏--》唤醒
+			3)文本事件
+				change		变化事件
+		
+		3.组件特定的属性与解释	
+			program::[type=[normal|definedwin]] [title] [padding] [margin] [size] [layout]
+			
+			container::[type=[normal|progressbar|autocnt|textarea] [padding] [margin] [size]
+			[layout]
+			progressbar（未实现）
+			autocnt(有滚动条容器，未实现)
+			textarea(文本编辑，未实现)
+			
+			Button::[type=[normal|transparent]] [value] [padding] [margin] [size] [src]
+			[icon_src]
+			特殊：type=transparent时添加不了图片
+			
+			label::[type=[normal|transparent]] [value] [padding] [margin] [size]
+			
+			radio::[type=[normal]] [value] [margin] [size]
+			
+			textarea::[type=[normal]] [value] [editable] [margin] [size]
+			
+			progressbar::[type] [orig_width] [orig_height] [slide_to] [src] [margin] [size]
         
