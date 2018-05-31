@@ -1,7 +1,8 @@
 # FAST_MAKE_PROGRAM
 桌面程序开发架包
 
-    目的：加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
+# 横线
+    目的：加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
     
 	一、过程：
         	1、启动Core。
@@ -189,4 +190,5 @@
 			textarea::[type=[normal]] [value] [editable] [margin] [size]
 			
 			progressbar::[type] [orig_width] [orig_height] [slide_to] [src] [margin] [size]
+	
         
