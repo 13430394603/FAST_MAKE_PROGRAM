@@ -85,7 +85,7 @@ public class TestFrame extends AbstractControlEtc{
 ### 18/5/24 
 |描述|详细
 |:----|:------|
-|添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray|green|black|blue|cyan|pink|red|orange|yellow|lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
+|添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray/green/black/blue/cyan/pink/red/orange/yellow/lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
 |可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式
 			
 |相对父元素字段或值|size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
