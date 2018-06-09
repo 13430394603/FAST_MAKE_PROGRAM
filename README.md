@@ -86,8 +86,7 @@ public class TestFrame extends AbstractControlEtc{
 |描述|详细
 |:----|:------|
 |添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray/green/black/blue/cyan/pink/red/orange/yellow/lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
-|可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式
-			
+|可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式		
 |相对父元素字段或值|size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
 |容器增加布局属性`[layout]`|default_layout			无布局 <br>vertline_layout		垂直流线布局 <br>horiline_layout		水平流线布局 <br>新增包结构： <br>com.gui.layout <br>    Layout.java <br>        AbstractLayout.java <br>			DefaultLayout.java <br>    		VertLineLayout.java <br>			HoriLineLayout.java
 |将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象|意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
