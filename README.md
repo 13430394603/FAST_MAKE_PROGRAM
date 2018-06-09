@@ -91,19 +91,19 @@ public class TestFrame extends AbstractControlEtc{
 	</container>
 </program>
 ```
-3).img（根目录img文件）
-	ProgramBack.png	程序背景 <br>
-	ProgramIcon.png	菜单栏图标 <br>
-	ProgramIconMin.png	界面小图标 <br>
-4).界面类注解@Control
-	com.awt.annotation.@Control(priority<默认为5,区间0-10>) 	界面控制类注解  <br>
-5).启动类
-	com.awt.core.Core  				启动类--加载注解为@Control的控制类 <br>
-6).核心控制类
-	生成界面，所有界面都需继承控制类 <br>
-	com.awt.control.AbstractControlEtc 		扩展控制类 <br>
-7).上下文对象
-	获取com.awt.context.ProgramContext.ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
+3).img（根目录img文件） <br>
+> ProgramBack.png	程序背景 <br>
+> ProgramIcon.png	菜单栏图标 <br>
+> ProgramIconMin.png	界面小图标 <br>
+4).界面类注解@Control <br>
+> com.awt.annotation.@Control(priority<默认为5,区间0-10>) 	界面控制类注解  <br>
+5).启动类 <br>
+> com.awt.core.Core  				启动类--加载注解为@Control的控制类 <br>
+6).核心控制类 <br>
+> 生成界面，所有界面都需继承控制类 <br>
+> com.awt.control.AbstractControlEtc 		扩展控制类 <br>
+7).上下文对象 <br>
+> 获取com.awt.context.ProgramContext.ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
 
 # 配置文件标签
 `标签语法树`
