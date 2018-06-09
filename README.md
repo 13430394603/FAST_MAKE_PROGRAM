@@ -59,22 +59,22 @@ public class TestFrame extends AbstractControlEtc{
 </program>
 ```
 3).img（根目录img文件）
-	ProgramBack.png	程序背景
-	ProgramIcon.png	菜单栏图标
-	ProgramIconMin.png	界面小图标
+	ProgramBack.png	程序背景 <br>
+	ProgramIcon.png	菜单栏图标 <br>
+	ProgramIconMin.png	界面小图标 <br>
 4).com.awt.annotation
-	@Control(priority<默认为5,区间0-10>) 	界面控制类注解  
+	@Control(priority<默认为5,区间0-10>) 	界面控制类注解  <br>
 5).com.awt.core
-	Core  				启动类--加载注解为@Control的控制类
+	Core  				启动类--加载注解为@Control的控制类 <br>
 6).com.awt.control（生成界面，所有界面都需继承控制类）
-	AbstractControlEtc 		扩展控制类 
+	AbstractControlEtc 		扩展控制类 <br>
 7).com.awt.context.ProgramContext
-	获取ContextMap对象，通过这个Map可获取xml文件中有属性name的组件
+	获取ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
 
 # 配置文件标签语法
 >program
 >>container
->>>container
+>>>container <br>
 >>>button <br>
 >>>text <br>
 >>>label <br>
@@ -88,7 +88,7 @@ public class TestFrame extends AbstractControlEtc{
 |添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray/green/black/blue/cyan/pink/red/orange/yellow/lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
 |可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式		
 |相对父元素字段或值|size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
-|容器增加布局属性`[layout]`|default_layout			无布局 <br>vertline_layout		垂直流线布局 <br>horiline_layout		水平流线布局 <br>新增包结构： <br>com.gui.layout <br>    Layout.java <br>        AbstractLayout.java <br>			DefaultLayout.java <br>    		VertLineLayout.java <br>			HoriLineLayout.java
+|容器增加布局属性`[layout]`|default_layout无布局 <br>vertline_layout垂直流线布局 <br>horiline_layout水平流线布局 <br>新增包结构： <br>com.gui.layout <br>-Layout.java <br>--AbstractLayout.java <br>---DefaultLayout.java <br>---VertLineLayout.java <br>---HoriLineLayout.java
 |将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象|意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
 |核心类的优化，便于扩展|优化AbstractControl_Basi、AbstractControlEtc <br>将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展 <br>新增功能接口（在控制类中向程序窗口添加元素） <br>	add(String key, DComp comp, Object jLayer) <br>	add(String key, DComp comp) <br>	add(String key, DComp comp, int index) <br>
 
@@ -101,28 +101,28 @@ public class TestFrame extends AbstractControlEtc{
 
 `程序运行过程`
 ***
-1、启动Core。
-2、加载标注有@Control并且继承Control_Basi类的界面对象。
-3、并按照优先级实例化界面对象。
-4、实例化的界面对象会扫描对应的配置文件创建gui组件并添加相应的事件。
-5、完成页面的初始化。
-6、销毁
+1、启动Core。<br>
+2、加载标注有@Control并且继承Control_Basi类的界面对象。<br>
+3、并按照优先级实例化界面对象。<br>
+4、实例化的界面对象会扫描对应的配置文件创建gui组件并添加相应的事件。<br>
+5、完成页面的初始化。<br>
+6、销毁。<br>
 
 `架包扩展说明`
 ***
 1. 标签扩展
-	1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
-	2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性
-    	3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象
-      	4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象）	
-	5).在配置文件中增加配置（systemConf.systemConf.xml）
-		增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean>
-		增加<bean id="create_组件标签名称" 
-		class="com.awt.dealComponentImpl.组件处理对象类名"></bean>
+	1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建 <br> 
+	2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性 <br>
+    	3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象 <br>
+      	4).负责组件创建(调用 com.awt.enuma.TagType获取组件对象)和创建服务对象（组件事件对象） <br>	
+	5).在配置文件中增加配置（systemConf.systemConf.xml） <br>
+		增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean> <br>
+		增加<bean id="create_组件标签名称"  <br>
+		class="com.awt.dealComponentImpl.组件处理对象类名"></bean> <br>
 2. service扩展（负责组件事件的创建）
-	1).com.awt.domain包中以Service为父类增加对应的服务类
-	2).在配置文件中增加配置（systemConf.systemConf.xml）
-		<bean id="service名称" class="com.awt.service.服务类名"></bean>
+	1).com.awt.domain包中以Service为父类增加对应的服务类 <br>
+	2).在配置文件中增加配置（systemConf.systemConf.xml） <br> 
+		<bean id="service名称" class="com.awt.service.服务类名"></bean> <br>
       	   
 	七、已有标签说明：
 		1. 属性名称定义与解释
