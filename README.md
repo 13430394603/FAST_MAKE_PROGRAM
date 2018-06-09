@@ -8,7 +8,40 @@
 
 ****
 
-# 目的
+# 目录
+> [引言](#引言)
+> [使用说明](#使用说明)
+>> 控制类的创建示例
+>> xml文件的配置
+>> img（根目录img文件）
+>> 界面类注解@Control
+>> 启动类
+>> 核心控制类
+>> 上下文对象
+> [配置文件标签](#配置文件标签)
+>> 标签语法树
+>> 标签属性说明
+>>> 所有标签
+>>> program
+>>> container
+>>> Button
+>>> label
+>>> radio
+>>> textarea
+>>> progressbar
+>> 事件
+>>> 点击事件
+>>> 窗口事件
+>>> 文本事件
+> [更新](#更新)
+> [开发](#开发)
+>> 目的
+>> 程序运行过程
+>> 架包扩展说明
+>>> 标签扩展
+>>> service扩展
+
+# 引言
 * 架包的目的是加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
 
 # 使用说明
@@ -25,7 +58,7 @@ public class TestFrame extends AbstractControlEtc{
 	}
 }
 ```
-2).xml文件
+2).xml文件的配置
 命名方式--界面控制类需与xml文件名命名处理xml首字母小写其余相同
 例子：
 ```xml
@@ -62,17 +95,18 @@ public class TestFrame extends AbstractControlEtc{
 	ProgramBack.png	程序背景 <br>
 	ProgramIcon.png	菜单栏图标 <br>
 	ProgramIconMin.png	界面小图标 <br>
-4).com.awt.annotation
-	@Control(priority<默认为5,区间0-10>) 	界面控制类注解  <br>
-5).com.awt.core
-	Core  				启动类--加载注解为@Control的控制类 <br>
-6).com.awt.control（生成界面，所有界面都需继承控制类）
-	AbstractControlEtc 		扩展控制类 <br>
-7).com.awt.context.ProgramContext
-	获取ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
+4).界面类注解@Control
+	com.awt.annotation.@Control(priority<默认为5,区间0-10>) 	界面控制类注解  <br>
+5).启动类
+	com.awt.core.Core  				启动类--加载注解为@Control的控制类 <br>
+6).核心控制类
+	生成界面，所有界面都需继承控制类 <br>
+	com.awt.control.AbstractControlEtc 		扩展控制类 <br>
+7).上下文对象
+	获取com.awt.context.ProgramContext.ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
 
 # 配置文件标签
-`标签树`
+`标签语法树`
 ***
 >program
 >>container
@@ -83,24 +117,81 @@ public class TestFrame extends AbstractControlEtc{
 >>>radio <br>
 >>>textarea <br>
 
-`标签说明`
+`标签属性说明`
 ***
+`所有标签`
+
 |attr_name|desc|values
 |:---:|------|------
 |type|标签组件类型|默认nomal
-|size|组件大小符合对象|`<width height>`数字/数学表达式
-|margin|外边距符合对象|`<margin_left margin_top>`数字/数学表达式
-|padding|内边距符合对象|`<padding_left padding_top>`数字/数学表达式
+|size|组件大小复合对象|`<width height>`数字/数学表达式
+|margin|外边距复合对象|`<margin_left margin_top>`数字/数学表达式
+|padding|内边距复合对象|`<padding_left padding_top>`数字/数学表达式
 |name|context中的key值，不给则不添加进context|字符串
 |font_style|字体样式|`<bold/italic/plain>`
 |font_name|字体名称|字体名称
 |font_size|字体大小|整数
-|font|字体符合对象|`<font_style font_name font_size>`
+|font|字体复合对象|`<font_style font_name font_size>`
 |title|程序窗口名称 -- program标签特有属性|字符串
 |src|背景|相对根目录的路径
 |icon_src|图标|相对根目录的路径
 |value|文本值|字符串
 |editable|是否可编辑 -- 用于textarea标签|true/false
+
+`program`
+
+|attr_name|desc
+|:---:|------
+|type|normal/definedwin
+|title|程序名称
+|layout|
+
+`container`
+
+|attr_name|desc
+|:---:|------
+|type|normal/progressbar（未实现）/autocnt(有滚动条容器，未实现)/textarea(文本编辑，未实现)
+|layout|
+
+`Button`
+
+|attr_name|desc
+|:---:|------
+|type|normal/transparent（此属性添加不了背景图片）
+|value|文本值
+|src|背景
+|icon_src|图标
+
+`label`
+
+|attr_name|desc
+|:---:|------
+|type|normal/transparent
+|value|文本值
+
+`radio`
+
+|attr_name|desc
+|:---:|------
+|type|normal
+|value|文本值
+		
+`textarea`
+
+|attr_name|desc
+|:---:|------
+|type|normal
+|value|文本值
+|editable|是否可编辑，值为true/false
+
+`progressbar`
+
+|attr_name|desc
+|:---:|------
+|type|
+|orig_width|原始
+|orig_height|原始 
+|slide_to|滑动到
 
 `事件`
 ***
@@ -176,27 +267,3 @@ public class TestFrame extends AbstractControlEtc{
 	1).com.awt.domain包中以Service为父类增加对应的服务类 <br>
 	2).在配置文件中增加配置（systemConf.systemConf.xml） <br> 
 		<bean id="service名称" class="com.awt.service.服务类名"></bean> <br>
-
-		
-		3.组件特定的属性与解释	
-			program::[type=[normal|definedwin]] [title] [padding] [margin] [size] [layout]
-			
-			container::[type=[normal|progressbar|autocnt|textarea] [padding] [margin] [size]
-			[layout]
-			progressbar（未实现）
-			autocnt(有滚动条容器，未实现)
-			textarea(文本编辑，未实现)
-			
-			Button::[type=[normal|transparent]] [value] [padding] [margin] [size] [src]
-			[icon_src]
-			特殊：type=transparent时添加不了图片
-			
-			label::[type=[normal|transparent]] [value] [padding] [margin] [size]
-			
-			radio::[type=[normal]] [value] [margin] [size]
-			
-			textarea::[type=[normal]] [value] [editable] [margin] [size]
-			
-			progressbar::[type] [orig_width] [orig_height] [slide_to] [src] [margin] [size]
-	
-        
