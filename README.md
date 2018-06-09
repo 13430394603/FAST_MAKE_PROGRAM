@@ -92,7 +92,7 @@ public class TestFrame extends AbstractControlEtc{
 |margin|外边距符合对象|`<margin_left margin_top>`数字/数学表达式
 |padding|内边距符合对象|`<padding_left padding_top>`数字/数学表达式
 |name|context中的key值，不给则不添加进context|字符串
-|font_style|字体样式|`[bold/italic/plain]`
+|font_style|字体样式|`<bold/italic/plain>`
 |font_name|字体名称|字体名称
 |font_size|字体大小|整数
 |font|字体符合对象|`<font_style font_name font_size>`
@@ -105,6 +105,7 @@ public class TestFrame extends AbstractControlEtc{
 `事件`
 ***
 `点击事件`
+
 |事件名称|描述
 |:---|:---
 |click|点击
@@ -115,6 +116,7 @@ public class TestFrame extends AbstractControlEtc{
 |mouseout|鼠标滑出
 			
 `窗口事件`
+
 |事件名称|描述
 |:---|:---
 |close|关闭
@@ -124,6 +126,7 @@ public class TestFrame extends AbstractControlEtc{
 |open|隐藏--》唤醒
 
 `文本事件`
+
 |事件名称|描述
 |:---|:---
 |change|变化事件
