@@ -5,7 +5,6 @@
 |Author|威|
 |:---:|:---
 |E-mail|chenJiWey@163.com
-|引用|[![csdn-logo]][csdn]
 
 ****
 
@@ -83,6 +82,7 @@ public class TestFrame extends AbstractControlEtc{
 
 # 更新
 ### 18/5/24 
+|描述|详细
 |:----|:------|
 |添加了复合属性|`[size="width height"]` <br>
 			`[border="borderColor lineSize"]` <br>
@@ -113,13 +113,13 @@ public class TestFrame extends AbstractControlEtc{
         				add(String key, DComp comp, int index) <br>
 
 # 开发
-目的
+`目的`
 ***
 1、加快开发的速度。
 2、界面参数集中管理。
 3、界面与逻辑分开处理，降低依赖有效解耦。
 
-程序运行过程
+`程序运行过程`
 ***
 1、启动Core。
 2、加载标注有@Control并且继承Control_Basi类的界面对象。
@@ -128,7 +128,7 @@ public class TestFrame extends AbstractControlEtc{
 5、完成页面的初始化。
 6、销毁
 
-架包扩展说明
+`架包扩展说明`
 ***
 1. 标签扩展
 	1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建
