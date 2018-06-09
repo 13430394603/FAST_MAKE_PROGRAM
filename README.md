@@ -71,7 +71,9 @@ public class TestFrame extends AbstractControlEtc{
 7).com.awt.context.ProgramContext
 	获取ContextMap对象，通过这个Map可获取xml文件中有属性name的组件<br>
 
-# 配置文件标签语法
+# 配置文件标签
+`标签树`
+***
 >program
 >>container
 >>>container <br>
@@ -81,7 +83,54 @@ public class TestFrame extends AbstractControlEtc{
 >>>radio <br>
 >>>textarea <br>
 
+`标签说明`
+***
+|attr_name|desc|values
+|:---:|------|------
+|type|标签组件类型|默认nomal
+|size|组件大小符合对象|`<width height>`数字/数学表达式
+|margin|外边距符合对象|`<margin_left margin_top>`数字/数学表达式
+|padding|内边距符合对象|`<padding_left padding_top>`数字/数学表达式
+|name|context中的key值，不给则不添加进context|字符串
+|font_style|字体样式|`[bold/italic/plain]`
+|font_name|字体名称|字体名称
+|font_size|字体大小|整数
+|font|字体符合对象|`<font_style font_name font_size>`
+|title|程序窗口名称 -- program标签特有属性|字符串
+|src|背景|相对根目录的路径
+|icon_src|图标|相对根目录的路径
+|value|文本值|字符串
+|editable|是否可编辑 -- 用于textarea标签|true/false
+
+`事件`
+***
+`点击事件`
+|事件名称|描述
+|:---|:---
+|click|点击
+|dbclick|双击
+|mousedown|释放
+|mouseup|按下
+|mousemove|鼠标在元素内滑过
+|mouseout|鼠标滑出
+			
+`窗口事件`
+|事件名称|描述
+|:---|:---
+|close|关闭
+|focus|获取焦点
+|blur|失去焦点
+|hide|隐藏
+|open|隐藏--》唤醒
+
+`文本事件`
+|事件名称|描述
+|:---|:---
+|change|变化事件
+						
+				
 # 更新
+-----------------------------------------
 ### 18/5/24 
 |描述|详细
 |:----|:------|
@@ -91,6 +140,7 @@ public class TestFrame extends AbstractControlEtc{
 |容器增加布局属性`[layout]`|default_layout无布局 <br>vertline_layout垂直流线布局 <br>horiline_layout水平流线布局 <br>新增包结构： <br>com.gui.layout <br>-Layout.java <br>--AbstractLayout.java <br>---DefaultLayout.java <br>---VertLineLayout.java <br>---HoriLineLayout.java
 |将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象|意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
 |核心类的优化，便于扩展|优化AbstractControl_Basi、AbstractControlEtc <br>将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展 <br>新增功能接口（在控制类中向程序窗口添加元素） <br>	add(String key, DComp comp, Object jLayer) <br>	add(String key, DComp comp) <br>	add(String key, DComp comp, int index) <br>
+-----------------------------------------
 
 # 开发
 `目的`
@@ -110,7 +160,7 @@ public class TestFrame extends AbstractControlEtc{
 
 `架包扩展说明`
 ***
-1. 标签扩展
+1. 标签扩展 <br>
 	1).com.awt.enuma.TagType增加内部类enum类--实现对组件的创建 <br> 
 	2).com.awt.domain包中以BasiDoMain为父类增加标签对应的实体对象，承载标签属性 <br>
     	3).com.awt.dealComponentImpl分别以DealComponent、DealComponentCnt为父类增加处理对象 <br>
@@ -119,51 +169,11 @@ public class TestFrame extends AbstractControlEtc{
 		增加<bean id="组件标签名称" class="com.awt.domain.组件DoMain类名"> </bean> <br>
 		增加<bean id="create_组件标签名称"  <br>
 		class="com.awt.dealComponentImpl.组件处理对象类名"></bean> <br>
-2. service扩展（负责组件事件的创建）
+2. service扩展（负责组件事件的创建） <br>
 	1).com.awt.domain包中以Service为父类增加对应的服务类 <br>
 	2).在配置文件中增加配置（systemConf.systemConf.xml） <br> 
 		<bean id="service名称" class="com.awt.service.服务类名"></bean> <br>
-      	   
-	七、已有标签说明：
-		1. 属性名称定义与解释
-			type		标签组件类型
-			width		元素宽度
-			height		元素高度
-			size		组件大小符合对象 -- <width height>
-			margin_left	左外边距
-			margin_top	上外边距
-			margin		外边距符合对象 -- <margin_left margin_top>
-			padding_left	左内边距 -- 通常用于容器标签属性
-			padding_top 	上内边距 -- 通常用于容器标签属性
-			padding		内边距符合对象 -- <padding_left padding_top>
-			name		context中的key值，不给则不添加进context
-          		font_style 	字体样式
-          			[bold|italic|plain]
-          		font_name	字体名称
-          		font_size	字体大小
-          		font 		字体符合对象 -- <font_style font_name font_size>
-          		title		程序窗口名称 -- 为program标签特有属性
-          		src		背景
-          		icon_src	图标
-          		value		文本值
-          		editable	是否可编辑 -- 用于textarea标签
-       		
-		2.事件的定义与解释
-			1)点击事件
-				click		点击
-				dbclick		双击
-				mousedown		释放
-				mouseup		按下
-				mousemove		鼠标在元素内滑过
-				mouseout		鼠标滑出
-			2)窗口事件
-				close		关闭	
-				focus		获取焦点
-				blur			失去焦点
-				hide			隐藏
-				open			隐藏--》唤醒
-			3)文本事件
-				change		变化事件
+
 		
 		3.组件特定的属性与解释	
 			program::[type=[normal|definedwin]] [title] [padding] [margin] [size] [layout]
