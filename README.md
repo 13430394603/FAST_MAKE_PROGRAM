@@ -6,6 +6,8 @@
 |:---:|:---
 |E-mail|chenJiWey@163.com
 
+[![Author](https://travis-ci.org/iluwatar/java-design-patterns.svg?branch=master)]()
+
 ****
 
 # 目录
