@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 使用了布局 -->
 <program name="mainFrame2"
 	 type="definedwin" 
 	 size="240*2 385" 

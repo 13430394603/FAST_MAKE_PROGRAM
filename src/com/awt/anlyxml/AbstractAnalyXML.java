@@ -80,8 +80,7 @@ public class AbstractAnalyXML {
 	 */
 	protected void init(File fileXml) throws ParserConfigurationException, SAXException, IOException{
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder;
-		builder = dbFactory.newDocumentBuilder();
+		DocumentBuilder builder = dbFactory.newDocumentBuilder();
 		doc = builder.parse(fileXml); 
 		CreateNavig c = new CreateNavig();
 		try {

@@ -3,7 +3,16 @@ package com.gui.typeStyle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-
+/**
+ * <b>垂直滚动条</b>
+ * <p>
+ * 描述:<br>
+ * 
+ * @author 威 
+ * <br>2018年6月27日 下午9:19:50 
+ * @see
+ * @since 1.0
+ */
 public class DefaultJLabelEtc extends AbstaractDefaultLabel{
 	private static final long serialVersionUID = 1L;
 

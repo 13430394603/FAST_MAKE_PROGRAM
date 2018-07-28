@@ -109,6 +109,15 @@ public class CreateNavig {
 		com.awt.util.Print.out(this, "dealXml", xmlStringBuilder);
 	}
 	
+	/**
+	 * 创建navig导航对象
+	 * <p>	 
+	 * @param index  开始位置
+	 * @return
+	 * Object[]
+	 * @see
+	 * @since 1.0
+	 */
 	public Object[] createNavig(Integer index){
 		try {
 			return createNavig(null, index);
@@ -120,14 +129,14 @@ public class CreateNavig {
 	
 	/**
 	 * 创建navig导航对象
-	 * <p>
+	 * <p>	 
+	 * @param parentNavig
 	 * @param index 开始位置
 	 * @return
 	 * @throws NavigError	获取导航对象时，xml文本可能错误
 	 * Object[] 返回参数为数组格式，共有两个参数 ： 1.结束位置，2.导航对象
 	 * @see #findStart(Integer)
 	 * @see #findEnd(Integer)
-	 * @since 1.0
 	 */
 	public Object[] createNavig(Navig parentNavig, Integer index) throws NavigError{
 		String tagName = "";

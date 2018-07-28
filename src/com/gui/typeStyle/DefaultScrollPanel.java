@@ -53,6 +53,7 @@ public class DefaultScrollPanel extends DefaultPanel {
 		draw.setDragable(vertical, in_cnt);	
 		super.add(vertical);
 		
+		//滚轮事件
 		this.addMouseWheelListener(new MouseWheelListener(){
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {

@@ -9,5 +9,10 @@ public class HoriLineLayout extends AbstractLayout implements Layout{
 		comp.setMargin(allowX+(int) comp.getMargin().getX(), 
 				allowY+(int) comp.getMargin().getY());
 		allowX += (int) comp.getSize().getWidth() + temp;
+		
+		
 	}
+}
+interface DoRun{
+	void execute();
 }

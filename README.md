@@ -12,7 +12,7 @@
 # 目录
 * [引言](#引言) <br>
 * [使用说明](#使用说明) <br>
-	* 控制类的创建示例 <br>
+	* 界面类（控制类）的创建示例 <br>
 	* xml文件的配置 <br>
 	* img（根目录img文件） <br>
 	* 界面类注解@Control <br>
@@ -46,8 +46,9 @@
 * 架包的目的是加快桌面程序的开发的速度、界面参数集中管理、界面与逻辑分开处理，降低依赖有效解耦。
 
 # 使用说明
-1).控制类的创建示例：
+1).界面类（控制类）的创建示例：
 ```Java
+//调度xml配置文件生成窗口
 @Control
 public class TestFrame extends AbstractControlEtc{
 	public TestFrame(){
@@ -63,6 +64,7 @@ public class TestFrame extends AbstractControlEtc{
 命名方式--界面控制类需与xml文件名命名处理xml首字母小写其余相同
 例子：
 ```xml
+<!--配置窗口信息-->
 <program name="mainFrame2"
 	type="definedwin" 
 	size="240*2 385" 
