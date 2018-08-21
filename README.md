@@ -237,15 +237,15 @@ public class TestFrame extends AbstractControlEtc{
 				
 # 更新
 -----------------------------------------
-### 18/5/24 
-|描述|详细
-|:----|:------|
-|添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray/green/black/blue/cyan/pink/red/orange/yellow/lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
-|可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式		
-|相对父元素字段或值|size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
-|容器增加布局属性`[layout]`|default_layout无布局 <br>vertline_layout垂直流线布局 <br>horiline_layout水平流线布局 <br>新增包结构： <br>com.gui.layout <br>-Layout.java <br>--AbstractLayout.java <br>---DefaultLayout.java <br>---VertLineLayout.java <br>---HoriLineLayout.java
-|将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象|意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
-|核心类的优化，便于扩展|优化AbstractControl_Basi、AbstractControlEtc <br>将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展 <br>新增功能接口（在控制类中向程序窗口添加元素） <br>	add(String key, DComp comp, Object jLayer) <br>	add(String key, DComp comp) <br>	add(String key, DComp comp, int index) <br>
+|时间|描述|详细
+|:--|:----|:------|
+|18/5/24|添加了复合属性|`[size="width height"]` <br>`[border="borderColor lineSize"]` <br>`[borderColor:gray/green/black/blue/cyan/pink/red/orange/yellow/lightGray]` <br>`[font="fontName fontStyle fontSize"]` <br>`[padding="left top"]` <br>`[margin="left top"]`
+|18/5/24|可以使用表达式|size padding margin 中的数字可以使用数学表达式--例如：120*2 <br>com.awt.util.Arithmetic转换数学表达式		
+|18/5/24|相对父元素字段或值|size 属性值可以使用特殊字段parent<适应父容器> /half_parent<相对于父容器的一半>
+|18/5/24|容器增加布局属性`[layout]`|default_layout无布局 <br>vertline_layout垂直流线布局 <br>horiline_layout水平流线布局 <br>新增包结构： <br>com.gui.layout <br>-Layout.java <br>--AbstractLayout.java <br>---DefaultLayout.java <br>---VertLineLayout.java <br>---HoriLineLayout.java
+|18/5/24|将此类com.awt.context.ProgramContext所存的组件值从Component换成了DComp对象|意味着界面控制类所操作的组件为DComp对象--有利于组建的定位处理
+|18/5/24|核心类的优化，便于扩展|优化AbstractControl_Basi、AbstractControlEtc <br>将service的处理分离到com.awt.dealComponentImpl包中的类处理，便于扩展 <br>新增功能接口（在控制类中向程序窗口添加元素） <br>	add(String key, DComp comp, Object jLayer) <br>	add(String key, DComp comp) <br>	add(String key, DComp comp, int index) <br>
+|18/7/|domain对象新的管理方式|domain对象不再只使用SpringBean加配置文件管理，可以通过注解管理，<br>注解名称@CBean--注解参数’name‘字段，将使用此字段调用此对象
 -----------------------------------------
 
 # 开发
