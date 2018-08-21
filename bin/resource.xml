@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource namespace="bin">
+	<resource_listener>
+		<filter class="com.filter_resource.filter.resource.impl.BranchResourceFilterOfClass">
+			<filter_pro class="com.filter_resource.test.FilterDemo"/>
+		</filter>
+	</resource_listener>
+</resource>

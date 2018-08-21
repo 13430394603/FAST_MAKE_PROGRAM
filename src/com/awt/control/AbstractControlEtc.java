@@ -46,7 +46,7 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 	}
 	
 	/**
-	 * Control类启动
+	 * Control一切就绪执行此方法
 	 * <p>	 
 	 * void
 	 * @since 1.0
@@ -120,12 +120,7 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 					if(!navig_.name.equals("service")){
 						dealObj.dealComponent(nowObj,
 							setGetDoMain.getProperty(navig_.name), 
-							new ReFun(){
-								@Override
-								public DComp reDo(DoMain ctn) {
-									return dealDoMain(ctn, navig_);
-								}
-							});
+							ctn -> {return dealDoMain(ctn, navig_);});
 					}else
 						dealObj.dealService(nowObj, ((BasiDoMain) domain).getService());
 				}

@@ -9,6 +9,7 @@ import com.awt.annotation.Control;
 import com.awt.control.AbstractControl_Basi;
 import com.awt.domain.ControlDomain;
 import com.awt.util.Print;
+import com.filter_resource.core.FilterResourceCore;
 /**
  * <b>核心启动类</b>
  * <p>
@@ -26,6 +27,8 @@ public class Core {
 	/**
 	 * 启动有关的控制类
 	 * <p>	 
+	 * 1、筛选符合的类集合 
+	 * 2、
 	 * void
 	 * @see #sortStrategy(Object[])
 	 * @see #getResource(File)
@@ -57,6 +60,18 @@ public class Core {
 			}
 			sortStrategy(origArr);
 		}
+	}
+	/**
+	 * 初始化
+	 * <p>
+	 * 初始化FilterResourceCore
+	 * void
+	 * @since 1.0
+	 */
+	@SuppressWarnings("static-access")
+	public void initCore(){
+		FilterResourceCore startObject = new FilterResourceCore();
+		startObject.startOfClassPath("resource.xml");
 	}
 	/**
 	 * 对排好序的数组中的Control对象进行实例化
@@ -146,5 +161,4 @@ public class Core {
 		className = className.replace(".class", "").replace("\\", ".");
 		return className;
 	}	
-	
 }
