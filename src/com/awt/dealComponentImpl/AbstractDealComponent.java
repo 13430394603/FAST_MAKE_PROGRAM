@@ -144,7 +144,7 @@ public abstract class AbstractDealComponent {
 	 */
 	protected abstract void dealComponent1(DComp nowObj, List<DoMain> domains, ReFun reFun);
 	/**
-	 * 处理子组件同意调用接口
+	 * 处理子组件统一调用接口
 	 * <p>	 
 	 * 容器容器组件特有的处理<br>
 	 * @param nowObj		当前组件

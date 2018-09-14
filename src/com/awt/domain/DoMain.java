@@ -8,7 +8,7 @@ package com.awt.domain;
  * <p>
  * appendTo(StringBuilder sb) 会拼接toString输出， 一般只需要在appendTo中添加输出项即可
  * <p>
- * appendItem(StringBuilder sb, String itemName, Object itemObj) 生成一个标准的添加项
+ * appendItem(StringBuilder sb, String itemName, Object itemObj) 生成一个标准的输出项
  * <p>
  * 专注于处理toString输出对象
  * @author 威 
@@ -50,6 +50,6 @@ public class DoMain {
 	 * @since
 	 */
 	protected void appendItem(StringBuilder sb, String fieldName, Object fieldVal){
-		sb.append("; ").append(fieldName).append("=").append(fieldVal);
+		sb.append(fieldName).append("=").append(fieldVal).append("; ");
 	}
 }
