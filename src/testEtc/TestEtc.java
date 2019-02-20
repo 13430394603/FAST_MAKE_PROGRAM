@@ -1,9 +1,19 @@
 package testEtc;
 
+import java.awt.Button;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.awt.annotation.Control;
@@ -20,7 +30,7 @@ import com.stream.Stream.Resource;
  * @see com.awt.control.AbstractControl
  * @since 1.0
  */
-/*@Control*/
+@Control
 public class TestEtc extends AbstractControlEtc{
 	private boolean selectFlag;		//选择默认
 	private JTextField jrePath;		//jre目录
@@ -33,7 +43,7 @@ public class TestEtc extends AbstractControlEtc{
 		super();
 		selectFlag = true;
 	}
-	
+	@SuppressWarnings({ "unused", "rawtypes" })
 	@Override
 	protected void execute() {
 		System.out.println("start program!");
@@ -41,6 +51,9 @@ public class TestEtc extends AbstractControlEtc{
 		jarName = (JTextField) getComponentByName("jarName");
 		cutName = ((JTextField) getComponentByName("cutNameText"));
 		showInfo = (DefaultTextArea) getComponentByName("showInfo");
+		
+		// 添加 ActionListener。
+		
 		
 		String imgPath = Resource.getResourceToString("img", "4444444.png");
 		ImageIcon img = new ImageIcon(imgPath);
@@ -50,7 +63,8 @@ public class TestEtc extends AbstractControlEtc{
 		bar.setMargin(0, 0);
 		bar.setOrigSize(450, 6);
 		bar.slideTo(430);
-		
+		System.out.println("-----------------------");
+		//((JFrame)ProgramContext.getContext().get("mainFrame")).addActio
 		int num = 0;
 		while(true){
 			try {
@@ -62,8 +76,8 @@ public class TestEtc extends AbstractControlEtc{
 				e.printStackTrace();
 			}
 		}
-		
 	}
+	
 	public void selectRadio(MouseEvent e){
 		selectFlag = selectFlag ? false : true;
 		cutName.setEnabled(selectFlag);
@@ -84,4 +98,6 @@ public class TestEtc extends AbstractControlEtc{
 	public void selectJarPath(MouseEvent e){
 		System.out.println("selectJarPath");
 	}
+	
 }
+

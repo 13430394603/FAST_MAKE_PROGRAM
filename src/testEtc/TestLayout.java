@@ -14,7 +14,7 @@ import com.awt.control.AbstractControlEtc;
  * @see
  * @since 1.0
  */
-@Control
+/*@Control*/
 public class TestLayout extends AbstractControlEtc{
 	public TestLayout(){
 		super();

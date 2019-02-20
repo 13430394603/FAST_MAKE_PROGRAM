@@ -1,11 +1,21 @@
 package com.awt.control;
 
+import java.awt.Button;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
 
 import com.awt.anlyxml.TestXML;
 import com.awt.context.ProgramContext;
 import com.awt.dealComponentImpl.AbstractDealComponent;
-import com.awt.dealComponentImpl.ReFun;
 import com.awt.domain.BasiDoMain;
 import com.awt.domain.DoMain;
 import com.awt.domain.Navig;
@@ -14,6 +24,7 @@ import com.awt.util.Print;
 import com.bean.support.ReSetterGetter;
 import com.gui.DComp.DComp;
 import com.gui.DComp.DFrame;
+
 
 /**
  * <b>抽象控制类 基类</b>
@@ -29,7 +40,7 @@ import com.gui.DComp.DFrame;
  * @see com.awt.control.AbstractControl_Basi
  * @since 2.0
  */
-public abstract class AbstractControlEtc extends AbstractControl_Basi {
+public abstract class AbstractControlEtc extends AbstractControl_Basi implements ActionListener{
 	private TestXML test;
 	private String frameName;
 	
@@ -41,8 +52,9 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		init();
-		execute();
+		init();//初始化
+		addActionListtener();//添加ActionListener
+		execute();//初始化完成之后的操作
 	}
 	
 	/**
@@ -54,7 +66,7 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 	protected abstract void execute();
 	
 	/**
-	 * Control类初始化
+	 * Control类初始化 创建组件需在此处
 	 * <p>	 
 	 * void
 	 * @see
@@ -73,6 +85,64 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 		frameName = p.getName();
 		ProgramContext.getContext().put(p.getName(), ((DComp) dealDoMain(p, test.getNavig())).getComponent());
 	}
+	private List<ClickEventItem> list;
+	//点击事件添加ActionListtener
+	@SuppressWarnings("rawtypes")
+	private void addActionListtener(){
+		JButton bt1 = (JButton) getComponentByName("bt1");
+		JButton bt2 = (JButton) getComponentByName("bt2");
+		list = new ArrayList<>();
+		list.add(new ClickEventItem(bt1, null));
+		list.add(new ClickEventItem(bt2, null));
+		list.forEach(item->{
+			//（触及组件）--JButton,JComboBox,JMenuItem,JPasswordField
+			//addActionListener只要以上方法才能调用因此需按需转换类型
+			Component jComp = item.getComp();
+			if(jComp instanceof JButton || jComp instanceof Button)
+				((JButton) jComp).addActionListener(this);
+			else if(jComp instanceof JComboBox)
+				((JComboBox) jComp).addActionListener(this);
+			else if(jComp instanceof JMenuItem)
+				((JMenuItem) jComp).addActionListener(this);
+			else if(jComp instanceof JPasswordField)
+				((JPasswordField) jComp).addActionListener(this);
+		});
+	}
+	//委托事件
+	public void actionPerformed(ActionEvent e){
+		System.out.println("void actionPerformed(ActionEvent e)");
+		for(ClickEventItem b : list){
+			if(e.getSource() == b.getComp()){
+				System.out.println(b);
+				//反射执行method
+			}
+		}
+		/*if(e.getSource() == bt1)
+			System.out.println("点击到名称为bt1的按钮");
+		else if(e.getSource() == bt2)
+			System.out.println("点击到名称为bt2的按钮");*/
+		//一个标签有点击事件时，边记录下了该标签的元素，以及事件方法名；
+		//一切就绪时对组件进行addActionListener 以及在actionPerformed中添加该类型的事件集
+		/*
+		 class ClickEventItem{
+		 	Component comp;
+		 	Method method;
+		 }
+		 //执行.addActionListener
+		 ArrayList<ClickEventItem> list;
+		 list.forEach(item->{
+		 	item.getComp().addActionListener(this);
+		 });
+		 //需要遍历事件集
+		 ArrayList<ClickEventItem> list;
+		 list.forEach(item->{
+		 	if(e.getSource() == item.getComp()){
+		 		//那么就反射执行method}
+		 });
+		 
+		 */
+		
+	}	
 	
 	/**
 	 * 自定义导航对象
@@ -143,3 +213,24 @@ public abstract class AbstractControlEtc extends AbstractControl_Basi {
 		frame.add(key, comp, index);
 	}
 }
+class ClickEventItem{
+	Component comp;
+ 	Method method;
+ 	public ClickEventItem(Component comp, Method method){
+ 		this.comp = comp;
+ 		this.method = method;
+ 	}
+	public Component getComp() {
+		return comp;
+	}
+	public void setComp(Component comp) {
+		this.comp = comp;
+	}
+	public Method getMethod() {
+		return method;
+	}
+	public void setMethod(Method method) {
+		this.method = method;
+	}
+ 	
+ }

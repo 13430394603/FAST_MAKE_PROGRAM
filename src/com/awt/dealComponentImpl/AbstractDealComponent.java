@@ -218,21 +218,24 @@ public abstract class AbstractDealComponent {
 	 * @see com.bean.support.ReSetterGetter#getProperty(String)
 	 * @since 1.0
 	 */
-	protected void putFieldEventMap(Map<String, Method> map, String field, ReSetterGetter object, Class<?> typeParame){
+	protected void putFieldEventMap(Map<String, Method> map, String field, 
+			ReSetterGetter object, Class<?> typeParame){
 		try {
 			String methodName = (String) object.getProperty(field);
 			if(methodName != null){
 				Print.out(this, "putEventMap", methodName);
 				if(!methodName.equals(""))
-					map.put(field, reflectObject.getMethod(methodName, typeParame));
+					map.put(field, 
+					reflectObject.getMethod(methodName, typeParame));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	/**
-	 * 将DoMain对象中的数据注入eventMap中 
+	 * 枚举enum集合寻找所有可能的事件
 	 * <p>	 
+	 * 最终目的：将DoMain对象中的数据注入eventMap中 <br>
 	 * 针对于ClickService注入<br>
 	 * 
 	 * @param object		DoMain对象或者ReSetterGetter对象
@@ -242,9 +245,8 @@ public abstract class AbstractDealComponent {
 	 * @since 1.0
 	 */
 	protected <T> void  putEventMap(ReSetterGetter obj, 
-			Map<String, Method> eventMap, 
-			T[] types,
-			Class<?> classType) {
+			Map<String, Method> eventMap, T[] types, Class<?> classType) {
+		//枚举enum集合寻找所有可能的事件
 		for(T type : types)
 			putFieldEventMap(eventMap, type.toString(), obj, classType);
 	}

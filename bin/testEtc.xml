@@ -4,18 +4,18 @@
 	 width="480" 
 	 height="385" 
 	 title="cutJar" 
-	 padding_left="10" 
-	 padding_top="20">
+	 padding_left="14" 
+	 padding_top="24">
 	<container padding_left="74" 
 			padding_top="4" 
 			type="normal" 
 			width="400" 
 			height="50">
 		<text name="jrePathText" type="transparent" width="240" height="20"></text>
-		<button click="selectJrePath" type="transparent" margin_left="250" width="22" height="20"></button>
+		<button name="bt1" click="selectJrePath" type="transparent" margin_left="250" width="22" height="20"></button>
 		
 		<text name="jarName" type="transparent" margin_top="24" width="240" height="20"></text>
-		<button click="selectJarPath" type="transparent" margin_top="24" margin_left="250" width="22" height="20"></button>
+		<button name="bt2" click="selectJarPath" type="transparent" margin_top="24" margin_left="250" width="22" height="20"></button>
 	</container>
 	
 	<container width="400" 
