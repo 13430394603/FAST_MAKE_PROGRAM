@@ -1,5 +1,5 @@
 # FAST_MAKE_PROGRAM
-该文件用于记录FAST_MAKE_PROGRAM桌面程序开发架包，通过配置文件配置一个界面，并通过继承一个Control类来生成对应配置文件的界面。
+该文件用于记录FAST_MAKE_PROGRAM桌面程序开发架包，通过配置文件配置一个界面，并通过继承一个Control类来充当该界面的逻辑类。
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ChenJiWei95/MAKE_PROGRAM/blob/master/LICENSE)
 ****
 
