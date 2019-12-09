@@ -21,7 +21,7 @@ import com.filter_resource.core.FilterResourceCore;
 public class Core {
 	public static void main(String[] args)
 			throws Exception {
-		Print.ALLOW_PRINT  = false;
+		Print.ALLOW_PRINT  = true;
 		new Core().doStart();
 	}
 	/**
@@ -111,8 +111,16 @@ public class Core {
 	 * @since 1.0
 	 */
 	private List<ControlDomain> getResource(File dir){
+		/*dir.list(new java.io.FilenameFilter(){
+
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".class");
+			}
+			
+		});*/
 		List<ControlDomain> list = new ArrayList<ControlDomain>();
-		File[] files = dir.listFiles();
+		File[] files = dir.listFiles(); 
 		for(File file : files){
 			if(file.isDirectory())
 				list.addAll(getResource(file));

@@ -24,7 +24,7 @@ public class WCacheManage {
 		caches = new CacheManagerImpl();
 		CacheListener l = new CacheListener(caches);
 		l.startListen();
-	} 
+	}  
 	/**
 	 * 返回缓存插件管理对象
 	 * <p>	 
