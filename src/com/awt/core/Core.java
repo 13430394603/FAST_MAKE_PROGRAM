@@ -44,21 +44,9 @@ public class Core {
 			return;
 		else if(len == 1)
 			newInstance(list.get(0).getClazz());
-		else if(len > 1){
-			Object[] origArr = list.toArray();
-			for(int j = len; j > 1; j--){
-				ControlDomain temp = null;
-				ControlDomain pre = (ControlDomain) origArr[0];
-				for(int i = 1; i > j; i++){
-					temp = (ControlDomain) origArr[i];
-					if(pre.getPriority() > temp.getPriority()){
-						origArr[i] = pre;
-						origArr[i-1] = temp;
-					}
-					pre = (ControlDomain) origArr[i];
-				}
-			}
-			sortStrategy(origArr);
+		else if(len > 1){ 
+			for(Object item : sortStrategy(origArr))
+				newInstance(((ControlDomain) item).getClazz()); 
 		}
 	}
 	/**
@@ -74,17 +62,28 @@ public class Core {
 		startObject.startOfClassPath("resource.xml");
 	}
 	/**
-	 * 对排好序的数组中的Control对象进行实例化
+	 * 对Control对象数组进行排序
 	 * <p>
 	 * @param arr	排序好的Control数组对象
 	 * void
-	 * @see #newInstance(Class)
+	 * @see #doStart(Class)
 	 * @since 1.0
 	 */
-	private void sortStrategy(Object[] arr){
-		int len = arr.length;
-		for(int i = 0; i < len; i++)
-			newInstance(((ControlDomain) arr[i]).getClazz());
+	private Object[] sortStrategy(Object[] arr){
+			Object[] origArr = list.toArray();
+			for(int j = len; j > 1; j--){
+				ControlDomain temp = null;
+				ControlDomain pre = (ControlDomain) origArr[0];
+				for(int i = 1; i > j; i++){
+					temp = (ControlDomain) origArr[i];
+					if(pre.getPriority() > temp.getPriority()){
+						origArr[i] = pre;
+						origArr[i-1] = temp;
+					}
+					pre = (ControlDomain) origArr[i];
+				}
+			}
+			return origArr; 
 	}
 	/**
 	 * 实例化
